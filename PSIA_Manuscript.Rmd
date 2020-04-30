@@ -58,20 +58,27 @@ csl: plos.csl
 bibliography: bibliography.bib
 ---
 
+<!--
+This is the R Markdown document used to create the manuscript and its figures/tables.
+It requires:
+1) the tidyverse, retistruct and gridExtra libraries,
+2) the data sets XXXX (included here),
+3) and the citations included here (bibliography.bib).
+To compile this markdown document, place all these files in one folder.
+-->
+
 ```{r setup_markdown, include=FALSE}
 
-library(tint)
-# invalidate cache when the package version changes
-knitr::opts_chunk$set(tidy = FALSE, cache.extra = packageVersion('tint'),
-                      echo = FALSE, warning = FALSE, message = FALSE)
-options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(tidy = FALSE, echo = FALSE, warning = FALSE, message = FALSE)
+
+tiff_figures = FALSE
 
 ```
 
 ```{r setup_analysis}
 
 library(tidyverse)
-#library(retistruct)
+library(retistruct)
 library(gridExtra)
 
 # Some functions for dealing with vectors and angles
@@ -87,20 +94,24 @@ rad2deg = function(angles) return(angles / pi * 180)
 
 dot_product = function(v1, v2) return(v1[,1] * v2[,1] + v1[,2] * v2[,2] + v1[,3] * v2[,3])
 
-# Get the Dibble flake re-measurement dataset
-Dibble_remeasure = readRDS('data/Dibble_flakes_remeasurements.RDS') %>%
+# Get the Dibble data sets.
+dibble_inc_bevel = readRDS('Dibble_flakes_including_bevel.RDS')
+dibble = readRDS('Dibble_flakes_no_bevel.RDS')
+
+# Get the Dibble flake re-measurement dataset (those re-measured by hand)
+dibble_remeasured = readRDS('Dibble_flakes_remeasurements.RDS') %>%
   mutate(psia_trig = rad2deg(acos((PV1 ^ 2 + PV2 ^ 2 - PW ^ 2) / (2 * PV1 * PV2)))) %>%
   filter(!is.na(psia_trig))
 
-# Get the MPI flake dataset
-MPI_flakes = readRDS('data/MPI_flakes.RDS')
+# Get the Campagne data set
+campagne = readRDS('Campagne_attribute_data.RDS')
 
-# Get the Dibble data and clean it up a bit.  
-beveldata = readRDS('data/Dibble_flakes_including_bevel.RDS')
-expdata = readRDS('data/Dibble_flakes_no_bevel.RDS')
+# Get the MPI dataset
+MPI_flakes = readRDS('MPI_flakes.RDS')
+
 
 # Get the outline of the Dibble core surface (semispherical)
-core_outline = readRDS('data/dibble_core_platform_outline.RDS')
+core_outline = readRDS('Dibble_core_platform_outline.RDS')
 
 # Get just the part that is struck
 platform_edge = core_outline[core_outline[,2] < 11,]
@@ -117,11 +128,6 @@ min_y = min(curve_y)
 curve_y = curve_y - min_y
 curve_xy = cbind(curve_x, curve_y)
 
-#camp_data_path = 'O:\\Research Projects\\Lithics\\Igor_scanning_GM_project\\Complete Dataset\\lms_and_independent_data'
-camp_data_path = 'data'
-f = paste(camp_data_path, 'campagne_attribute_data.RDS', sep = '\\')
-data = readRDS(f)
-
 my_theme = theme(
   panel.background = element_rect(fill = 'grey95'),
   strip.background = element_blank(),
@@ -129,7 +135,6 @@ my_theme = theme(
   panel.grid.major = element_blank(),
   panel.border = element_blank(),
   legend.background = element_blank())
-
 
 ```
 
@@ -184,7 +189,11 @@ p = p + ylab('')
 p = p + my_theme
 p2 = p + coord_fixed()
 
+if (tiff_figures) tiff('figure_01.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 grid.arrange(p1, p2, nrow = 1)
+
+if (tiff_figures) graphics.off()
 
 ```
 
@@ -199,15 +208,14 @@ Lastly, for the MPI data, we use only the goniometer method described above.  On
 We use the R [@team_r_2010] statistical environment to do this analysis.  This paper is an rMarkdown document, and it is included in the supplementary information along with the data files needed to compile the document and replicate all of the figures, tables, and statistics. 
 
 
-
 # Results
 
 
 ```{r estimating_the_PSIA_on_the_Dibble_cores}
 
 # Get the Dibble data
-pd = as.vector(expdata$PD)
-pw = as.vector(expdata$PW)
+pd = as.vector(dibble$PD)
+pw = as.vector(dibble$PW)
 
 # Prepare a place to hold the calculated angle
 angles = vector(mode = 'double', length = length(pd))
@@ -253,16 +261,19 @@ for (i in (1:length(pd))) {
   
 }
 
-expdata_extra = expdata
-expdata_extra$pd_bulb = pd_bulb
-expdata_extra$pd_edge = pd_edge
-expdata_extra$psia = angles
-expdata_extra$max_pop_2_pw = max_pop_2_pw
+#dibble_extra = dibble
+#dibble_extra$pd_bulb = pd_bulb
+#dibble_extra$pd_edge = pd_edge
+#dibble_extra$psia = angles
+#dibble_extra$max_pop_2_pw = max_pop_2_pw
 
-#saveRDS(expdata_extra, 'data//dibble exp data with psia.RDS')
-#write.csv(expdata_extra %>% select(UNIT, ID, psia), 'data/psia_dibble_flakes.csv')
+#saveRDS(dibble_extra, 'data//dibble exp data with psia.RDS')
+#write.csv(dibble_extra %>% select(UNIT, ID, psia), 'data/psia_dibble_flakes.csv')
 
-Dibble_remeasure = merge(Dibble_remeasure, expdata_extra, by = c('ID')) %>%
+#dibble_remeasured = merge(dibble_remeasured, dibble_extra, by = c('ID')) %>%
+#  select(psia, psia_trig, PSIA_GONIOMETER)
+
+dibble_remeasured = merge(dibble_remeasured, dibble %>% mutate(psia = angles), by = c('ID')) %>%
   select(psia, psia_trig, PSIA_GONIOMETER)
 
 ```
@@ -281,7 +292,12 @@ p = p + xlab('Platform Surface Interior Angle')
 p = p + ylab('Count')
 p = p + my_theme
 p = p + maincolumn_width_theme
+
+if (tiff_figures) tiff('figure_02.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 p
+
+if (tiff_figures) graphics.off()
 
 ```
 
@@ -291,7 +307,7 @@ Figure 2 shows the distribution of estimated PSIA in the Dibble glass dataset.  
 
 full_width_theme = theme(text = element_text(size = 6))
 
-plot_data = data.frame(cbind(pd, pw, EPA = expdata$EPA, mass = expdata$WEIGHT,  AOB = expdata$AOB, angles))
+plot_data = data.frame(cbind(pd, pw, EPA = dibble$EPA, mass = dibble$WEIGHT,  AOB = dibble$AOB, angles))
 
 p1 = ggplot()
 p1 = p1 + geom_point(plot_data, mapping = aes(pd, angles), size = .25)
@@ -317,7 +333,11 @@ p4 = p4 + ylab('')
 p4 = p4 + xlab('Weight (gm)')
 p4 = p4 + my_theme
 
+if (tiff_figures) tiff('figure_03.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 grid.arrange(p1, p2, p3, p4, ncol = 2)
+
+if (tiff_figures) graphics.off()
 
 ```
 
@@ -338,7 +358,12 @@ p = p + geom_point(plot_data, mapping = aes(AOB, angles), size = .25)
 p = p + ylab('PSIA (degrees)')
 p = p + xlab('AOB (degrees)')
 p = p + my_theme
+
+if (tiff_figures) tiff('figure_04.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 p
+
+if (tiff_figures) graphics.off()
 
 ```
 
@@ -408,15 +433,20 @@ p = p + xlab('Platform Depth (mm)')
 p = p + ylab('Platform Width (mm)')
 p = p + guides(color = guide_legend(title="Data set"))
 p = p + my_theme
+
+if (tiff_figures) tiff('figure_05.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 p
+
+if (tiff_figures) graphics.off()
 
 ```
 
-Figures 6 and 7 show comparisons of the results of the estimated PSIA presented above with direct measurements of this angle on a sample of `r nrow(Dibble_remeasure)` of the Dibble glass flakes.  For this sample, the PSIA is `r round(mean(Dibble_remeasure$psia),2)`±`r round(sd(Dibble_remeasure$psia),2)`.  When measured with a digital goniometer the angle is `r round(mean(Dibble_remeasure$PSIA_GONIOMETER),2)`±`r round(sd(Dibble_remeasure$PSIA_GONIOMETER),2)`, and when measured with digital calipers and calculated using trigonometry the angle is `r round(mean(Dibble_remeasure$psia_trig),2)`±`r round(sd(Dibble_remeasure$psia_trig),2)`.
+Figures 6 and 7 show comparisons of the results of the estimated PSIA presented above with direct measurements of this angle on a sample of `r nrow(dibble_remeasured)` of the Dibble glass flakes.  For this sample, the PSIA is `r round(mean(dibble_remeasured$psia),2)`±`r round(sd(dibble_remeasured$psia),2)`.  When measured with a digital goniometer the angle is `r round(mean(dibble_remeasured$PSIA_GONIOMETER),2)`±`r round(sd(dibble_remeasured$PSIA_GONIOMETER),2)`, and when measured with digital calipers and calculated using trigonometry the angle is `r round(mean(dibble_remeasured$psia_trig),2)`±`r round(sd(dibble_remeasured$psia_trig),2)`.
 
 ```{r fig6_remeasure_comparisons, fig.height = 2, fig.width = 5, fig.cap = "A comparison of the estimated platform surface interior angle, this same angle as calculated from caliper measurements, and this same angle measured with a goniometer.  All measures are in degrees."}
 
-p = ggplot(Dibble_remeasure, aes(PSIA_GONIOMETER, psia_trig))
+p = ggplot(dibble_remeasured, aes(PSIA_GONIOMETER, psia_trig))
 p = p + geom_point(size = 2, alpha = .5)
 p = p + ylab('Caliper PSIA')
 p = p + xlab('Goniometer PSIA')
@@ -427,7 +457,7 @@ p = p + coord_fixed()
 p = p + my_theme
 p1 = p
 
-p = ggplot(Dibble_remeasure, aes(PSIA_GONIOMETER, psia))
+p = ggplot(dibble_remeasured, aes(PSIA_GONIOMETER, psia))
 p = p + geom_point(size = 2, alpha = .5)
 p = p + ylab('Interpolated PSIA')
 p = p + xlab('Goniometer PSIA')
@@ -438,7 +468,7 @@ p = p + ylim(110,160)
 p = p + my_theme
 p2 = p
 
-p = ggplot(Dibble_remeasure, aes(psia_trig, psia))
+p = ggplot(dibble_remeasured, aes(psia_trig, psia))
 p = p + geom_point(size = 2, alpha = .5)
 p = p + ylab('Interpolated PSIA')
 p = p + xlab('Caliper PSIA')
@@ -449,13 +479,17 @@ p = p + ylim(110,160)
 p = p + my_theme
 p3 = p
 
+if (tiff_figures) tiff('figure_06.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 grid.arrange(p1, p2, p3, ncol = 3)
+
+if (tiff_figures) graphics.off()
 
 ```
 
 ```{r fig7_remeasure_distributions, fig.height = 2.5, fig.width = 5, fig.cap = 'The distributions of platform surface interior angle as directly measured with a goniometer and as calculated from caliper measurements.'}
 
-p = ggplot(Dibble_remeasure, aes(PSIA_GONIOMETER))
+p = ggplot(dibble_remeasured, aes(PSIA_GONIOMETER))
 p = p + geom_histogram(binwidth = 5)
 p = p + xlab('Goniometer PSIA (degrees)')
 p = p + ylab('Count')
@@ -464,7 +498,7 @@ p = p + theme(panel.grid.major.x = element_blank())
 p = p + theme(panel.grid.minor.x = element_blank())
 p1 = p
 
-p = ggplot(Dibble_remeasure, aes(psia_trig))
+p = ggplot(dibble_remeasured, aes(psia_trig))
 p = p + geom_histogram(binwidth = 5)
 p = p + xlab('Caliper PSIA (degrees)')
 p = p + ylab('Count')
@@ -473,46 +507,59 @@ p = p + theme(panel.grid.major.x = element_blank())
 p = p + theme(panel.grid.minor.x = element_blank())
 p2 = p
 
+if (tiff_figures) tiff('figure_07.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 grid.arrange(p1, p2, ncol = 2)
+
+if (tiff_figures) graphics.off()
 
 ```
 
-The distribution of the PSIA for the  `r nrow(data)` flakes in the Campagne dataset is shown in Figure 8.  In the hard hammer flakes only, which is the technique used in our subset of the Dibble glass dataset, the mean platform surface interior angle is `r round(mean(data %>% filter(Technique=='Hard Hammer') %>% select(angles) %>% pull()),2)`±`r round(sd(data %>% filter(Technique=='Hard Hammer') %>% select(angles) %>% pull()),2)`.  Because data are available for punch and soft hammer flakes, these are presented as well.  Punch flakes have a lower PSIA (stats), and soft hammer flakes have a mean of XX.  The mean PSIA for all flakes in the Campagne data set is `r round(mean(data$angles),2)`±`r round(sd(data$angles),2)`. 
+The distribution of the PSIA for the `r nrow(campagne)` flakes in the Campagne dataset is shown in Figure 8.  In the hard hammer flakes only, which is the technique used in our subset of the Dibble glass dataset, the mean platform surface interior angle is `r round(mean(campagne %>% filter(Technique=='Hard Hammer') %>% select(angles) %>% pull()),2)`±`r round(sd(campagne %>% filter(Technique=='Hard Hammer') %>% select(angles) %>% pull()),2)`.  Because data are available for punch and soft hammer flakes, these are presented as well.  Punch flakes have a lower PSIA (`r round(mean(campagne %>% filter(Technique=='Punch') %>% select(angles) %>% pull()),2)`±`r round(sd(campagne %>% filter(Technique=='Punch') %>% select(angles) %>% pull()),2)`), and soft hammer flakes have a mean of `r round(mean(campagne %>% filter(Technique=='Soft Hammer') %>% select(angles) %>% pull()),2)`±`r round(sd(campagne %>% filter(Technique=='Soft Hammer') %>% select(angles) %>% pull()),2)`.  The mean PSIA for all flakes in the Campagne data set is `r round(mean(campagne$angles),2)`±`r round(sd(campagne$angles),2)`. 
 
 ```{r fig8-camp_angles, fig.width = 5, fig.height = 2.5, fig.cap = "Distribution of PSIA in the Campagne data set color coded by percussion type."}
 
-p = ggplot(data, aes(angles, fill = Technique))
+p = ggplot(campagne, aes(angles, fill = Technique))
 p = p + geom_histogram(binwidth = 5)
 p = p + xlab('PSIA (degrees)')
 p = p + ylab('Count')
 p = p + my_theme
+
+if (tiff_figures) tiff('figure_08.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 p
+
+if (tiff_figures) graphics.off()
 
 ```
 
 In the Campagne data, PSIA does not covary with platform width, platform depth or the shape of the platform (as measured by the ratio of platform width to platform depth).  Though sample size is potentially a problem, there is perhaps an indication that for larger platform depths, there is less variability in the PSIA.
 
-```{r fig9-PSIA_to_other_measaures, fig.height = 2, fig.width = 5, fig.cap = "PSIA as a function of platform width, platform depth, and EPA in the experimental flake collection.  Color coding is the same as in Figure 8."}
+```{r fig9-PSIA_to_other_measures, fig.height = 2, fig.width = 5, fig.cap = "PSIA as a function of platform width, platform depth, and EPA in the experimental flake collection.  Color coding is the same as in Figure 8."}
 
-p = ggplot(data, aes(angles, pw, color = Technique))
+p = ggplot(campagne, aes(angles, pw, color = Technique))
 p = p + geom_point(show.legend = FALSE, size = .25)
 p = p + xlab('PSIA')
 p = p + ylab('Platform Width')
 p1 = p + my_theme
 
-p = ggplot(data, aes(angles, pd, color = Technique))
+p = ggplot(campagne, aes(angles, pd, color = Technique))
 p = p + geom_point(show.legend = FALSE, size = .25)
 p = p + xlab('PSIA')
 p = p + ylab('Platform Depth')
 p2 = p + my_theme
 
-p = ggplot(data, aes(angles, pw/pd, color = Technique))
+p = ggplot(campagne, aes(angles, pw/pd, color = Technique))
 p = p + geom_point(show.legend = FALSE, size = .25)
 p = p + xlab('PSIA')
 p = p + ylab('PW/PD')
 p3 = p + my_theme
 
+if (tiff_figures) tiff('figure_09.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 grid.arrange(p1, p2, p3, ncol = 3)
+
+if (tiff_figures) graphics.off()
 
 ```
 
@@ -525,7 +572,12 @@ p = p + geom_histogram(breaks = seq(110, 170, by = 5))
 p = p + xlab('Platform Surface Interior Angle (degrees)')
 p = p + ylab('Count')
 p = p + my_theme
+
+if (tiff_figures) tiff('figure_10.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 p
+
+if (tiff_figures) graphics.off()
 
 ```
 
@@ -540,7 +592,7 @@ Each of the datasets and measurement methods used to determine the PSIA yielded 
 
 model_pd = lm(pd ~ angles + pw)
 
-bevel_flakes = beveldata %>%
+bevel_flakes = dibble_inc_bevel %>%
   filter(BEVEL!= 'NONE') %>%
   mutate(WEIGHT_CR = WEIGHT ^ (1/3)) %>%
   select(pw = PW, EPA, WEIGHT_CR , PD, LENGTH) %>%
@@ -552,20 +604,10 @@ estimated_pd = predict(model_pd, data.frame(bevel_flakes))
 
 bevel_flakes$PD = estimated_pd
 
-#model_length = lm(LENGTH ~ PD + EPA + PD * EPA, data = expdata)
-#expdata$model_length = predict(model_length, data = expdata)
+dibble$WEIGHT_CR = dibble$WEIGHT ^ (1/3)
 
-#bevel_flakes$estimate_length2 = predict(model_length, data.frame(bevel_flakes))
-
-#bevel_flakes$PD = bevel_flakes$PD_true
-#bevel_flakes$estimate_length1 = predict(model_length, data.frame(bevel_flakes))
-
-#bevel_flakes$PD = estimated_pd
-
-expdata$WEIGHT_CR = expdata$WEIGHT ^ (1/3)
-
-model_mass =  lm(WEIGHT_CR ~ PD + EPA + PD * EPA, data = expdata)
-expdata$model_weight = predict(model_mass, data = expdata)
+model_mass =  lm(WEIGHT_CR ~ PD + EPA + PD * EPA, data = dibble)
+dibble$model_weight = predict(model_mass, data = dibble)
 
 bevel_flakes$estimate_weight2 = predict(model_mass, data.frame(bevel_flakes))
 
@@ -584,7 +626,7 @@ This modeled platform depth is then be used to improve the EPA-PD model to give 
 
 ```{r fig11-bevel_with_estimated_pd, fig.width = 5, fig.height = 5, fig.cap = "Platform depth to platform width including beveled flakes (red) and non-beveled flakes (black) (top).  Estimated points in blue are the same beveled flakes but with the platform depth predicted using the average PSIA and their actual platform width.  At the bottom, the actual flake weight is compared to the predicted flake weight based on an EPA-PD model for non-beveled flakes (points in black).  The predicted weight using the actual (w/o PSIA) and the modeled (with PSIA) platform depths for the beveled flakes are then plotted as well in red and blue respectively."}
 
-p = ggplot(beveldata, aes(PD, PW, color = Beveling))
+p = ggplot(dibble_inc_bevel, aes(PD, PW, color = Beveling))
 p = p + geom_point(alpha = .5)
 p = p + geom_point(bevel_flakes, mapping = aes(PD, PW, color = 'Estimated'), size = 2, alpha = .5)
 p = p + xlab('Platform Depth (mm)')
@@ -593,7 +635,7 @@ p = p + my_theme
 p1 = p + scale_colour_manual(name = "Beveling",
                             values = c('Beveled' = 'firebrick2', 'None' = 'black', 'Estimated' = 'deepskyblue2'))
 
-p = ggplot(expdata, aes(x = WEIGHT_CR, y = model_weight))
+p = ggplot(dibble, aes(x = WEIGHT_CR, y = model_weight))
 p = p + geom_point(alpha = .5)
 p = p + geom_point(data = bevel_flakes, mapping = aes(x = WEIGHT_CR, y = estimate_weight1, color = 'w/o PSIA'),
                     size = 2, alpha = .5)
@@ -604,7 +646,12 @@ p = p + ylab('Modeled Flake Weight')
 p = p + my_theme
 p2 = p + scale_colour_manual(name = "Beveled\nFlakes",
                             values = c('w/o PSIA' = 'firebrick2', 'with PSIA' = 'deepskyblue2'))
+
+if (tiff_figures) tiff('figure_11.tif', res = 300, width = 6.5, height = 6.5, units = 'in')
+
 grid.arrange(p1, p2, ncol = 1)
+
+if (tiff_figures) graphics.off()
 
 ```
 
@@ -640,3 +687,4 @@ Michel Brenet and Laurence Bourguignon produced the Campagne data set, and we th
 
 
 
+  

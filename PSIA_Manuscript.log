@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.4.28)  29 APR 2020 10:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7400 64-bit) (preloaded format=pdflatex 2020.4.28)  29 APR 2020 16:29
 entering extended mode
 **./PSIA_Manuscript.tex
 (PSIA_Manuscript.tex
@@ -607,13 +607,13 @@ pdf  used on input line 677.
 Manuscript_files/figure-latex/fig5-pd_pw_with_estimated_pw-1.pdf> <./PSIA_Manus
 cript_files/figure-latex/fig6_remeasure_comparisons-1.pdf> <./PSIA_Manuscript_f
 iles/figure-latex/fig7_remeasure_distributions-1.pdf>]
-<PSIA_Manuscript_files/figure-latex/fig9-PSIA_to_other_measaures-1.pdf, id=171,
- 361.35pt x 144.54pt>
-File: PSIA_Manuscript_files/figure-latex/fig9-PSIA_to_other_measaures-1.pdf Gra
-phic file (type pdf)
-<use PSIA_Manuscript_files/figure-latex/fig9-PSIA_to_other_measaures-1.pdf>
+<PSIA_Manuscript_files/figure-latex/fig9-PSIA_to_other_measures-1.pdf, id=171, 
+361.35pt x 144.54pt>
+File: PSIA_Manuscript_files/figure-latex/fig9-PSIA_to_other_measures-1.pdf Grap
+hic file (type pdf)
+<use PSIA_Manuscript_files/figure-latex/fig9-PSIA_to_other_measures-1.pdf>
 Package pdftex.def Info: PSIA_Manuscript_files/figure-latex/fig9-PSIA_to_other_
-measaures-1.pdf  used on input line 690.
+measures-1.pdf  used on input line 690.
 (pdftex.def)             Requested size: 361.34912pt x 144.53963pt.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: OT1).
@@ -628,8 +628,8 @@ Package pdftex.def Info: PSIA_Manuscript_files/figure-latex/fig10-mpi_data-1.pd
 f  used on input line 703.
 (pdftex.def)             Requested size: 361.34912pt x 180.67455pt.
 [14 <./PSIA_Manuscript_files/figure-latex/fig8-camp_angles-1.pdf> <./PSIA_Manus
-cript_files/figure-latex/fig9-PSIA_to_other_measaures-1.pdf>] [15 <./PSIA_Manus
-cript_files/figure-latex/fig10-mpi_data-1.pdf>]
+cript_files/figure-latex/fig9-PSIA_to_other_measures-1.pdf>] [15 <./PSIA_Manusc
+ript_files/figure-latex/fig10-mpi_data-1.pdf>]
 <PSIA_Manuscript_files/figure-latex/fig11-bevel_with_estimated_pd-1.pdf, id=203
 , 361.35pt x 361.35pt>
 File: PSIA_Manuscript_files/figure-latex/fig11-bevel_with_estimated_pd-1.pdf Gr
@@ -663,7 +663,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1174.
  ) 
 Here is how much of TeX's memory you used:
  12571 strings out of 491202
- 190340 string characters out of 3111276
+ 190334 string characters out of 3111276
  332785 words of memory out of 3000000
  17793 multiletter control sequences out of 15000+200000
  8796 words of font info for 53 fonts, out of 3000000 for 9000
@@ -679,7 +679,7 @@ fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmtt10.pfb>
-Output written on PSIA_Manuscript.pdf (25 pages, 425249 bytes).
+Output written on PSIA_Manuscript.pdf (25 pages, 425355 bytes).
 PDF statistics:
  369 PDF objects out of 1000 (max. 8388607)
  96 named destinations out of 1000 (max. 500000)
