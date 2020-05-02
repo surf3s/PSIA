@@ -170,6 +170,11 @@
 \newcommand{\ipsum}{{\bf IPSUM}}
 
 
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
 
 \usepackage{lineno}
 \usepackage{setspace}\doublespacing
@@ -197,8 +202,9 @@
 % Title must be 250 characters or less.
 \begin{flushleft}
 {\Large
-\textbf\newline{Introducing Platform Surface Interior Angle and Its Role in Flake
-Formation, Size and Shape} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
+\textbf\newline{Introducing Platform Surface Interior Angle and Its Role
+in Flake Formation, Size and
+Shape} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
 }
 \newline
 % Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
@@ -214,16 +220,19 @@ Jonathan Reeves\textsuperscript{\getAff{Tube}},
 Zeljko Rezek\textsuperscript{\getAff{MPI}},
 Marcel Weiss\textsuperscript{\getAff{MPI}}\\
 \bigskip
-\textbf{\getAff{MPI}}Department of Human Evolution, Max Planck Institute for Evolutionary
-Anthropology, Leipzig, Germany\\
-\textbf{\getAff{UPENN}}Department of Anthropology, University of Pennsylvania, Philadelphia,
-PA, USA\\
-\textbf{\getAff{NMSA}}The National Museum of South Africa, Bloemfontein, South Africa\\
-\textbf{\getAff{Leiden}}Department of Archaeology, University of Leiden, Leiden, The Netherlands\\
-\textbf{\getAff{Tube}}Department of Early Prehistory and Quaternary Ecology, Eberhard Karls
-University of Tübingen, Tübingen, Germany\\
-\textbf{\getAff{UOW}}Centre for Archaeological Science, School of Earth, Atmospheric and Life
-Sciences, University of Wollongong, Wollongong, Australia\\
+\textbf{\getAff{MPI}}Department of Human Evolution, Max Planck Institute
+for Evolutionary Anthropology, Leipzig, Germany\\
+\textbf{\getAff{UPENN}}Department of Anthropology, University of
+Pennsylvania, Philadelphia, PA, USA\\
+\textbf{\getAff{NMSA}}The National Museum of South Africa, Bloemfontein,
+South Africa\\
+\textbf{\getAff{Leiden}}Department of Archaeology, University of Leiden,
+Leiden, The Netherlands\\
+\textbf{\getAff{Tube}}Department of Early Prehistory and Quaternary
+Ecology, Eberhard Karls University of Tübingen, Tübingen, Germany\\
+\textbf{\getAff{UOW}}Centre for Archaeological Science, School of Earth,
+Atmospheric and Life Sciences, University of Wollongong, Wollongong,
+Australia\\
 \bigskip
 * Corresponding author: mcpherron@eva.mpg.de\\
 \end{flushleft}
@@ -492,34 +501,31 @@ semispherical cores (Figure 1). Next, we extracted just the portion of
 the outline that is where flakes are struck from these cores, and we fit
 a polynomial curve to these points. Using the formula for this curve, we
 created a series of equally spaced (in X) points along the platform edge
-(see Figure 1). We then filtered the Dibble glass data to have only
-flakes made from the semispherical cores by hard hammer. We include only
-flakes with a feather termination, and we exclude flakes coming from
-experiments on platform beveling {[}22{]} and so-called `on-edge' core
-strikes {[}16{]}. Knowing that Dibble and colleagues tried to strike
-flakes from these cores at the center or peak of the core surface
-curvature, we use the platform depths reported for these flakes to
-position the point of percussion relative to the set of platform edge
-outline points described above. Next, we find the symmetrical pair of
-platform edge outline points, one to the left and one to the right of
-the point of percussion, that yield a platform width equal to the
-reported platform width for each flake. Finally, the PSIA is calculated
-(arc-cosine of the dot product of two normalize vectors) as the angle
-between the two line segments formed by the left platform width point
-and the point of percussion and the right platform point and the point
-of percussion. In the results presented below, this angle is referred to
-as the \emph{estimated} PSIA to indicate that is is not directly
-measured from the flakes themselves.
+(see Fig. @ref(fig:fig1)). We then filtered the Dibble glass data to
+have only flakes made from the semispherical cores by hard hammer. We
+include only flakes with a feather termination, and we exclude flakes
+coming from experiments on platform beveling {[}22{]} and so-called
+`on-edge' core strikes {[}16{]}. Knowing that Dibble and colleagues
+tried to strike flakes from these cores at the center or peak of the
+core surface curvature, we use the platform depths reported for these
+flakes to position the point of percussion relative to the set of
+platform edge outline points described above. Next, we find the
+symmetrical pair of platform edge outline points, one to the left and
+one to the right of the point of percussion, that yield a platform width
+equal to the reported platform width for each flake. Finally, the PSIA
+is calculated (arc-cosine of the dot product of two normalize vectors)
+as the angle between the two line segments formed by the left platform
+width point and the point of percussion and the right platform point and
+the point of percussion. In the results presented below, this angle is
+referred to as the \emph{estimated} PSIA to indicate that is is not
+directly measured from the flakes themselves.
 
 {[}I will insert a new figure showing a Dibble glass core and how the
 measures we talk about here are made{]}
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig1-core_outlines-1.pdf}
-\caption{Outline of Dibble core surface (left) and the polynominal
-fitted to the core edge (right).}
-\end{figure}
+\begin{verbatim}
+[place Figure 1 here]
+\end{verbatim}
 
 We note that there are several potential sources of error in this
 method. First, we are assuming that each flake is struck from the center
@@ -586,12 +592,9 @@ replicate all of the figures, tables, and statistics.
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig2-test_1_angles-1.pdf}
-\caption{Distribution of estimated PSIA based on the Dibble glass
-flakes.}
-\end{figure}
+\begin{verbatim}
+[place Figure 2 here]
+\end{verbatim}
 
 Figure 2 shows the distribution of estimated PSIA in the Dibble glass
 dataset. The distribution has a mean of 136.49±7.56. Variation in this
@@ -600,12 +603,9 @@ angle or weight (Figure 3). There is a relationship between platform
 width and the platform surface interior angle such that larger angles
 result in wider platforms, which is to be expected (see Figure 3).
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig3-angles_to_other_measures-1.pdf}
-\caption{PW, PD, EPA and weight against the estimated PSIA based on the
-Dibble glass flakes.}
-\end{figure}
+\begin{verbatim}
+[place Figure 3 here]
+\end{verbatim}
 
 There also appears to be a relationship between the angle of blow and
 the PSIA (Figure 4). While there are fewer cases with angles of blow
@@ -614,12 +614,9 @@ blow may be correlated with lower PSIA. However, once an angle of blow
 is between 10-20 degrees or higher, the angle of blow is not correlated
 with the PSIA.
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig4-AOB_to_PSIA-1.pdf}
-\caption{AOB against the estimated platform surface interior angles
-based on the Dibble glass flakes.}
-\end{figure}
+\begin{verbatim}
+[place Figure 4 here]
+\end{verbatim}
 
 Another way of looking at the relationship between platform width and
 PSIA is to calculate what the platform width would be if the PSIA is a
@@ -632,13 +629,9 @@ Where these vectors intersect the platform edge defines the left and
 right limits of the platform width. This estimated value is then plotted
 against the actual, measured platform widths (Figure 5).
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig5-pd_pw_with_estimated_pw-1.pdf}
-\caption{The actual platform depth to platform width data from the
-Dibble glass core flakes and the estimated platform width using the
-average platform surface interior angle calculated previously.}
-\end{figure}
+\begin{verbatim}
+[place Figure 5 here]
+\end{verbatim}
 
 Figures 6 and 7 show comparisons of the results of the estimated PSIA
 presented above with direct measurements of this angle on a sample of 49
@@ -647,21 +640,13 @@ When measured with a digital goniometer the angle is 133.44±4.61, and
 when measured with digital calipers and calculated using trigonometry
 the angle is 135.86±8.85.
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig6_remeasure_comparisons-1.pdf}
-\caption{A comparison of the estimated platform surface interior angle,
-this same angle as calculated from caliper measurements, and this same
-angle measured with a goniometer. All measures are in degrees.}
-\end{figure}
+\begin{verbatim}
+[place Figure 6 here]
+\end{verbatim}
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig7_remeasure_distributions-1.pdf}
-\caption{The distributions of platform surface interior angle as
-directly measured with a goniometer and as calculated from caliper
-measurements.}
-\end{figure}
+\begin{verbatim}
+[place Figure 7 here]
+\end{verbatim}
 
 The distribution of the PSIA for the 568 flakes in the Campagne dataset
 is shown in Figure 8. In the hard hammer flakes only, which is the
@@ -672,12 +657,9 @@ Punch flakes have a lower PSIA (126.53±11.01), and soft hammer flakes
 have a mean of 138.94±15.69. The mean PSIA for all flakes in the
 Campagne data set is 138.63±13.27.
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig8-camp_angles-1.pdf}
-\caption{Distribution of PSIA in the Campagne data set color coded by
-percussion type.}
-\end{figure}
+\begin{verbatim}
+[place Figure 8 here]
+\end{verbatim}
 
 In the Campagne data, PSIA does not covary with platform width, platform
 depth or the shape of the platform (as measured by the ratio of platform
@@ -685,25 +667,18 @@ width to platform depth). Though sample size is potentially a problem,
 there is perhaps an indication that for larger platform depths, there is
 less variability in the PSIA.
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig9-PSIA_to_other_measures-1.pdf}
-\caption{PSIA as a function of platform width, platform depth, and EPA
-in the experimental flake collection. Color coding is the same as in
-Figure 8.}
-\end{figure}
+\begin{verbatim}
+[place Figure 9 here]
+\end{verbatim}
 
 The distribution of PSIA in the MPI dataset as measured by a digital
 goniometer is presented in Figure 10. This dataset contains \texttt{67}
 flakes, and the mean is 137.75±10.97, in keeping with the other
 datasets.
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig10-mpi_data-1.pdf}
-\caption{Distribution of platform surface interior angle in the MPI
-flakes dataset as measured by a digital goniometer.}
-\end{figure}
+\begin{verbatim}
+[place Figure 10 here]
+\end{verbatim}
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -773,19 +748,9 @@ which then determines the flake width via the PSIA given the shape of
 the platform edge. Beveling does not change the expected size of these
 flakes when flake formation is viewed this way.
 
-\begin{figure}
-\centering
-\includegraphics{PSIA_Manuscript_files/figure-latex/fig11-bevel_with_estimated_pd-1.pdf}
-\caption{Platform depth to platform width including beveled flakes (red)
-and non-beveled flakes (black) (top). Estimated points in blue are the
-same beveled flakes but with the platform depth predicted using the
-average PSIA and their actual platform width. At the bottom, the actual
-flake weight is compared to the predicted flake weight based on an
-EPA-PD model for non-beveled flakes (points in black). The predicted
-weight using the actual (w/o PSIA) and the modeled (with PSIA) platform
-depths for the beveled flakes are then plotted as well in red and blue
-respectively.}
-\end{figure}
+\begin{verbatim}
+[place Figure 11 here]
+\end{verbatim}
 
 There is some indication in the Dibble glass data that the angle of blow
 may impact the PSIA. At low angles of blow (with 0 degrees representing
@@ -954,6 +919,7 @@ not have been possible. We dedicate this paper to him.
 \addcontentsline{toc}{section}{References}
 
 \hypertarget{refs}{}
+\begin{cslreferences}
 \leavevmode\hypertarget{ref-cotterell_essential_1985}{}%
 1. Cotterell B, Kamminga J, Dickson FP. The essential mechanics of
 conchoidal flaking. International Journal of Fracture. 1985;29:
@@ -1167,9 +1133,9 @@ propagation in ceramics. International journal of fracture. 1996;79:
 cracking in brittle materials: An XFEM study. 2016 7th International
 Conference on Mechanical and Aerospace Engineering (ICMAE). IEEE; 2016.
 pp. 267--273.
+\end{cslreferences}
 
 \nolinenumbers
 
 
 \end{document}
-
