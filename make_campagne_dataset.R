@@ -4,8 +4,6 @@ campagne_data_path = 'O:\\Research Projects\\Lithics\\Igor_scanning_GM_project\\
 f = paste(campagne_data_path, 'lms_2019.txt', sep = '\\')
 landmarks = vecx(read.table(file = f, header = TRUE, sep="\t"), revert = TRUE, lmdim = 3)
 
-f = paste(campagne_data_path, 'independent_2019.txt', sep = '\\')
-attributes = read.table(f, stringsAsFactors = FALSE)
 
 # (ventral face towards me)
 # 1 - POP
@@ -22,6 +20,9 @@ attributes = read.table(f, stringsAsFactors = FALSE)
 landmarks = landmarks[c(1,2,3,6),,]
 saveRDS(landmarks, 'campagne_landmarks.RDS')
 
-attributes = attributes$Technique
+f = paste(campagne_data_path, 'independent_2019.txt', sep = '\\')
+attributes = read.table(f, stringsAsFactors = FALSE)
+
+attributes = data.frame(Technique = attributes$Technique, stringsAsFactors = FALSE)
 saveRDS(attributes, 'campagne_attributes.RDS')
 
