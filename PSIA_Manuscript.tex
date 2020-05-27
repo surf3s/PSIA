@@ -190,7 +190,7 @@
 \setcounter{secnumdepth}{0}
 
 \newcommand{\getAff}[1]{
-  \getIndex{#1}{MPI,UPENN,NMSA,Leiden,Tube,UOW}
+  \getIndex{#1}{MPI,UPENN,NMSA,Leiden,Tubingen,UOW}
 }
 
 \providecommand{\tightlist}{%
@@ -202,8 +202,8 @@
 % Title must be 250 characters or less.
 \begin{flushleft}
 {\Large
-\textbf\newline{Introducing Platform Surface Interior Angle and Its Role
-in Flake Formation, Size and
+\textbf\newline{Introducing Platform Surface Interior Angle (PSIA) and
+Its Role in Flake Formation, Size and
 Shape} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
 }
 \newline
@@ -214,9 +214,9 @@ Aylar Abdolahzadeh\textsuperscript{\getAff{UPENN}},
 Will Archer\textsuperscript{\getAff{NMSA}},
 Igor Djakovic\textsuperscript{\getAff{Leiden}},
 Tamara Dogandžić\textsuperscript{\getAff{MPI}},
-Li Li\textsuperscript{\getAff{Tube}},
+Li Li\textsuperscript{\getAff{Tubingen}},
 Sam Lin\textsuperscript{\getAff{UOW}},
-Jonathan Reeves\textsuperscript{\getAff{Tube}},
+Jonathan Reeves\textsuperscript{\getAff{Tubingen}},
 Zeljko Rezek\textsuperscript{\getAff{MPI}},
 Marcel Weiss\textsuperscript{\getAff{MPI}}\\
 \bigskip
@@ -228,7 +228,7 @@ Pennsylvania, Philadelphia, PA, USA\\
 South Africa\\
 \textbf{\getAff{Leiden}}Department of Archaeology, University of Leiden,
 Leiden, The Netherlands\\
-\textbf{\getAff{Tube}}Department of Early Prehistory and Quaternary
+\textbf{\getAff{Tubingen}}Department of Early Prehistory and Quaternary
 Ecology, Eberhard Karls University of Tübingen, Tübingen, Germany\\
 \textbf{\getAff{UOW}}Centre for Archaeological Science, School of Earth,
 Atmospheric and Life Sciences, University of Wollongong, Wollongong,
@@ -276,25 +276,26 @@ approaches including fracture mechanics (e.g.~{[}1--4{]}), controlled
 experiments (e.g.~{[}5--13{]}), replicative experiments
 (e.g.~{[}14--16{]}), and attribute analysis of archaeological
 assemblages. These approaches each have their own strengths and
-weaknesses; however, one way to think about the differences between them
+weaknesses; however, one way to think about the differences among them
 is in the directionality of inference. Fracture mechanics starts with
 first principles, or laws drawn from physics and material sciences in
 particular, concerning how fractures should form in brittle solids.
 These are then used to make predictions, typically with explicit
-mathematical equations, about how flakes should look (size and shape)
-under varying conditions of force application and solid material
-properties. These predictions are are then typically tested
-experimentally. To the contrary, controlled and replicative experiments
-and studies of actual lithic assemblages look at empirical regularities
-in size and shape under varying conditions of core preparation and
-flaking (where the core is struck, the hammer type, how the platform is
-prepared, the angle of strike, etc.) to build statistical models of
-flake formation. From these one can try to infer first principles, but
-for reasons discussed next, this is typically not done. All of these
-approaches to understanding flake formation are, of course, valid and
-useful. Ideally what is learned from actually doing (experiments) and
-what is learned from knowing how it should work in principle (fracture
-mechanics) inform each other in an iterative loop.
+mathematical models, about how flakes should look (size and shape) under
+varying conditions of force application and solid material properties.
+These predictions are then typically tested experimentally. To the
+contrary, controlled and replicative experiments and studies of actual
+lithic assemblages look at empirical regularities in flake size and
+shape under varying conditions of core preparation and flaking (where
+the core is struck, the hammer type, how the platform is prepared, the
+angle of strike, etc.). The observed outcomes are then summarized as
+statistical models of flake formation. From these models one can try to
+infer first principles, but for reasons discussed next, this is usually
+not done. All of these approaches to understanding flake formation are,
+of course, valid and useful. Ideally, what is learned from actually
+doing (experiments) and what is learned from knowing how it should work
+in principle (fracture mechanics) inform each other in an iterative
+loop.
 
 Understanding first principles causality from statistical modeling,
 however, is challenging. McElreath {[}17{]} gives the example of trying
@@ -304,14 +305,14 @@ eventually the right things could be measured on each car to build
 statistical models with enough predictive power to know how a new car
 might perform in a race, but it would be quite difficult to infer the
 general physical concepts (and laws) like torque, angular momentum,
-friction, conservation of energy, etc. from these statistical models. Of
-course, with prior knowledge of the physics, finding the right
-attributes to measure on the cars and statistical modeling are more
-quickly and accurately done. This is important because even when the
-physical laws are known, modeling them directly can be prohibitively
-complex or computationally expensive (e.g.~air resistance) whereas
-experiments and statistical models can more efficiently arrive at
-useable solutions.
+friction, aerodynamics, conservation of energy, etc. from these
+statistical models. Of course, with prior knowledge of the physics,
+finding the right attributes to measure on the cars and statistical
+modeling are more quickly and accurately done. This is important because
+even when the physical laws are known, modeling them directly can be
+prohibitively complex or computationally expensive (e.g.~air resistance)
+whereas experiments and statistical models can more efficiently arrive
+at useable solutions.
 
 The same is true of studies of flake formation and the role of fracture
 mechanics within it. Fracture mechanics itself is a longstanding and
@@ -320,32 +321,32 @@ extremely limited in our field, with the best examples coming from the
 papers of Cotterell and Kamminga {[}2,3{]} and of Speth {[}4,5{]}. These
 papers start with the physics of fracture mechanics in brittle solids to
 then explain how flakes are formed and, therefore, why they vary. Some
-attributes, like the bulb of percussion, are more easily directly
-accounted for in fracture mechanics (e.g.~Hertzian cone formation),
-whereas for other attributes, like flake size and shape, the conceptual
-and mathematical frameworks are provided by fracture mechanics. However,
-as with the just mentioned example of air resistance, translating the
+attributes, like the bulb of percussion, are more easily accounted for
+directly in fracture mechanics (e.g.~Hertzian cone formation), whereas
+for other attributes, like flake size and shape, the conceptual and
+mathematical frameworks are provided by fracture mechanics. However, as
+with the just mentioned example of air resistance, translating the
 physics of how flakes are formed into a workable model that can predict
 flake size and shape given the relevant parameters (e.g.~core shape,
 angle of blow, force of blow, etc.) has not come to pass (cf.~{[}4{]}),
 and it may not come to pass any time soon.
 
 So instead, while some papers on controlled experiments in flake
-formation may cite papers from fracture mechanics, their approaches are
-all based on statistical modeling of the relationships between variables
-of flaking and flake outcomes. Speth's work on this topic is a good
-example. His 1972 paper uses fracture mechanics to derive a formula to
-predict flake size which is then tested against a set of actual flakes
-from a prehistoric site. By 1975 and again in 1981, Speth had moved to
-experimental approaches (ball bearings on glass) and the connection back
-to fracture mechanics had all but disappeared. Dibble {[}10{]} goes
-further and dismisses fracture mechanics from the start as nearly
-irrelevant. Instead of looking to fracture mechanics for insights into
-what to study, experimental studies are being informed by replicative
-knappers and observations on how actual lithic assemblages vary. Dibble
-{[}10,18{]} is explicit in stating that his experimental research is
-based on what knappers would have been able to control. In these
-experiments, coming back to the race car analogy, we are carefully
+formation may cite studies from fracture mechanics, their approaches are
+all based on statistical modeling of the empirical relationships between
+variables of flaking and flake outcomes. Speth's work on this topic is a
+good example. His 1972 paper uses fracture mechanics to derive a formula
+to predict flake size which is then tested against a set of actual
+flakes from a prehistoric site. By 1975 and again in 1981, Speth had
+moved to experimental approaches (ball bearings on glass) and the
+connection back to fracture mechanics had all but disappeared. Dibble
+{[}10{]} goes further and dismisses fracture mechanics from the start as
+nearly irrelevant. Instead of looking to fracture mechanics for insights
+into what to study, experimental studies are being informed by
+replicative knappers and observations on how actual lithic assemblages
+vary. Dibble {[}10,18{]} is explicit in stating that his experimental
+research is based on what knappers would have been able to control. In
+these experiments, coming back to the race car analogy, we are carefully
 building cars controlling for engine size, wheel configurations, foils,
 etc., things that are generally thought to be important for making a car
 go fast, and then measuring their speeds. Again, though, because it is
@@ -353,90 +354,110 @@ also difficult to go in the other direction (from statistical modeling
 back to first principles), the controlled experiment papers have not
 produced a general model of how flakes form. Instead, we have a series
 of statistical models that are difficult to relate to one another
-(e.g.~{[}19{]}). The strongest and most influential of these is the
-exterior platform angle and platform depth (EPA-PD) model.
+(e.g.~{[}19{]}). Part of the difficulty stems from the fact that
+different knapping variables are likely related in complex ways during
+flake formation, yet their effects on flake variation are limited to a
+similar set of size and shape attributes. For instance, Magnani et
+al.~{[}19{]} showed that changing the angle of blow, the location of
+percussion and hammer hardness all result in similar flake attribute
+variation. While regression models can capture the influence of these
+individual knapping factors, reconciling them into a causal sequence of
+flake formation remains challenging without the guidance of a general
+model.
 
-\begin{verbatim}
-[place Figure 1 here]
-\end{verbatim}
+\begin{figure}
+\includegraphics[width=350px]{Figure_01} \caption{Illustration of several flake attributes discussed here.}\label{fig:fig1}
+\end{figure}
 
-The EPA-PD model states that flake size (weight) is primarily a function
-of two important variables: exterior platform angle (EPA) and platform
-depth (PD) (Figure 1). Increasing either increases flake size, but the
-relationship between the two is geometric such that at higher values of
-EPA changes in PD have a greater effect on flake size. The EPA-PD model
-has been replicated in multiple ways, including experiments in the
-material sciences {[}6--8,10,20,21{]} and in actual lithic assemblages
-(e.g.~{[}18,22,23{]}). It is also argued that in certain conditions,
-EPA-PD has a stronger effect on flake size and shape than does core
-surface morphology {[}11,24{]}. The EPA-PD model of flake formation,
-however, is constrained in what it can explain. For instance, beveled
-flakes, where the volume behind the platform is thinned, are not easily
-included into the model {[}25{]}. Beveled flakes are typically larger
-(weight) than the EPA-PD models predicts given their lower platform
-depths. The EPA-PD model also does not explain why flake size and shape
-change with varying angles of blow and platform shape {[}9,19,26{]}. It
-also does not account for flake width, which is obviously a major
-component of shape. It is worth noting that while the percentage of
-variability in weight explained by the EPA-PD model
+The strongest and most influential model derived from controlled
+experiments is the exterior platform angle and platform depth (EPA-PD)
+model. The EPA-PD model states that flake size (weight) is primarily a
+function of two important variables: exterior platform angle (EPA) and
+platform depth (PD) (Figure 1). Increasing either increases flake size,
+but the relationship between the two is geometric such that at higher
+values of EPA changes in PD have a greater effect on flake size. The
+EPA-PD model has been replicated in multiple ways, including experiments
+in the material sciences {[}6--8,10,20,21{]} and in actual lithic
+assemblages (e.g.~{[}18,22,23{]}). It is also argued that in certain
+conditions, EPA-PD has a stronger effect on flake size and shape than
+does core surface morphology {[}11,24{]}. The EPA-PD model of flake
+formation, however, is constrained in what it can explain. For instance,
+beveled flakes, where the volume behind the platform is thinned, are not
+easily included into the model {[}25{]}. Beveled flakes are typically
+larger (weight) than the EPA-PD models predicts given their lower
+platform depths. The EPA-PD model also does not explain why flake size
+and shape change with varying angles of blow and platform shape
+{[}9,19,26{]}. It also does not account for flake width, which is
+obviously a major component of shape. It is worth noting that while the
+percentage of variability in weight explained by the EPA-PD model
 (R\textsuperscript{2}) is typically high in the Dibble glass
 experiments, it is far lower in actual lithic assemblages {[}26{]}. It
 is low enough that its utility for measuring retouch intensity
 (i.e.~knowing how much mass has been removed from a flake through
-retouch) is limited {[}14,27--29{]}, and so there have been various
-proposals to improve the statistical modeling of flake weight (or size)
-from different sets of measures (e.g.~{[}28,30--32{]}). Again, though,
-without a general model, it is not really clear why one measurement
-technique should work better than another, and so success is measured by
-R\textsuperscript{2} values rather than against a theoretical
-predictions. The problem is that our knowledge of how flake formation
-works is still too limited to be translated into measurable attributes.
+retouch) is limited {[}14,27--29{]}. As a result, there have been
+various proposals to improve the statistical modeling of flake weight
+(or size) from different sets of measures (e.g.~{[}28,30--32{]}). Again,
+though, without a general model, it is not really clear why one
+measurement technique should work better than another. Because of this,
+the success of these models is measured by the amount of empirical
+variation the models can account for (i.e.~R\textsuperscript{2} values)
+rather than against theoretical predictions. This approach reflects the
+fundamental issue that our knowledge of how flake formation works is
+still too limited to be translated into measurable attributes. Instead,
+the majority of the lithic attributes commonly measured by
+archaeologists are derived from intuitive observations through
+actualistic flintknapping (i.e., when we do x, flakes tend to show y).
+Whether these attributes are meaningful for explaining flake variation
+is not justified \emph{a priori} by theoretical models of flake
+formation.
 
 Here we propose to build on the EPA-PD model by 1) switching the focus
 from variables controlled by the knapper to variables that might be more
 directly related to flake initiation and formation and by 2) drawing
 insights from the fracture mechanics literature. In particular, we start
-with the proposal that the Hertzian cone, the angle of which is know
+with the principle that the Hertzian cone, the angle of which is known
 from fracture mechanics to be a constant for a given raw material, has a
 measurable impact on flake formation.
 
 When a core is struck, the force of impact begins to produce a Hertzian
-cone or ``cone crack'' at the point of percussion (see Figure 1). The
+cone or ``cone crack'' at the point of percussion (see Figure 1A). The
 Hertzian cone is the characteristic feature of Hertzian fracture and is
 produced when a hard indenter is pressed onto the flat surface of a
 brittle solid {[}33--37{]}. In three dimensions it forms a truncated
-cone below the impact surface (see Figure 1). In archaeology, Hertzian
+cone below the impact surface (see Figure 1B). In archaeology, Hertzian
 fracture is often referred to as conchoidal fracture. While the size of
 the Hertzian cone is dependent on variables such as the indenter's
 radius, impact velocity and fracture toughness of the brittle solid, the
 cone angle remains unchanged {[}38{]}. The Hertzian cone angle
-(sometimes referred to as the included angle in fracture mechanics
+(sometimes referred to as the `included angle' in fracture mechanics
 literature) is the apex angle of the Hertzian cone. Though the
 orientation of the Hertzian cone can be altered by the changing the of
 angle of blow {[}36,38--40{]}, the apex angle remains constant for a
 given raw material type {[}41{]}. A number of fracture mechanics studies
 have demonstrated that the Hertzian cone angle is approximately 136° for
-soda lime glass {[}35--37{]}. This value is also reported in Cotterell
-and Kamminga {[}2{]}. The cone crack grows as force is transferred to
-the core. Once the crack reaches a certain length, the crack's
-propagation path will no longer be Hertzian. At this point, instead of
-propagating along the edges of the initial Hertzian cone, the crack
-continues almost parallel to the core surface to form a flake {[}1,2{]}.
-Although the Hertzian cone is only associated with the initial crack
-formation, the angle of the cone leaves a marked effect on the ventral
-surface of the flake near where it has been struck.
+soda lime glass {[}35--37{]}, the type of glass used by Dibble and
+colleagues for their experiments. This value is also reported in
+Cotterell and Kamminga {[}2{]}. The cone crack grows as force is
+transferred to the core. Once the crack reaches a certain length, the
+crack's propagation path will no longer be Hertzian. At this point,
+instead of propagating along the edges of the initial Hertzian cone, the
+crack continues almost parallel to the core surface to form a flake
+{[}1,2{]}. Although the Hertzian cone is only associated with the
+initial crack formation, the angle of the cone leaves a marked effect on
+the ventral surface of the flake near where it has been struck in the
+form of the bulb of percussion.
 
 Our prediction is that the constant Hertzian cone angle means that
-platform widths are largely a function of where the core is struck and
-where this angle intersects the platform edge. To show this we present a
-new measure called platform surface interior angle (PSIA) formed by the
-point of percussion and the extent of the platform width. We predict
-that this angle will be constant given that it directly follows from the
-constant of the Hertzian cone angle. If our prediction is correct,
-platform width (PW) is integrated into the EPA-PD model and grounded in
-fracture mechanics via PSIA. This model also has behavioral implications
-in that it may explain how the manipulation of the platform impacts
-flake morphology.
+platform width of a given flake is a function of where the core is
+struck and where this angle intersects the platform edge. To show this
+we present a new measure called platform surface interior angle (PSIA)
+formed by the point of percussion and the extent of the platform width
+(Figure 1B). We predict that this angle will be constant given that it
+directly follows from the constant of the Hertzian cone angle. If our
+prediction is correct, platform width (PW) can be incorporated into the
+EPA-PD model and grounded in fracture mechanics via PSIA. This model
+also has behavioral implications in that it may explain how the
+manipulation of the platform impacts flake morphology.
 
 To test this model, we examine several sets of flakes, including flakes
 produced in the Dibble glass experiments and flakes from replication
@@ -448,50 +469,50 @@ variability in the PSIA, and it is clear that this variability cannot be
 solely attributed to measurement error. In the Dibble glass experiments,
 where key variables are controlled, there is some indication that the
 PSIA responds to the angle of blow. Our finding is consistent with all
-of the empirical results of the Dibble experiments and it explains some
-of the patterns in those data that previously were unaccounted for. Once
-PSIA can be combined with the existing EPA-PD model, we may have a model
-for flake formation that can explain a larger portion of the variability
-we see in stone tool assemblages and that may allow for a closer link to
-predictions coming from fracture mechanics.
+of the empirical results of the Dibble experiments. More importantly,
+PSIA explains some of the patterns in those data that previously were
+unaccounted for. Once PSIA can be combined with the existing EPA-PD
+model, we may have a model for flake formation that can explain a larger
+portion of the variability we see in stone tool assemblages and that may
+allow for a closer link to predictions coming from fracture mechanics.
 
 \hypertarget{materials-and-methods}{%
 \section{Materials and Methods}\label{materials-and-methods}}
 
 We examine the platform surface interior angle in three different
-datasets. First, we examine glass flakes and cores coming from the
-Dibble controlled experiments in flake formation {[}9,19,22,24,25{]}.
-This dataset has the advantage that a number of potentially important
-variables are either controlled for or measurable. These include the
-exterior platform angle, the angle of blow, the hammer type, raw
-material, and metrics such as platform thickness, platform width, flake
-length, width and thickness, and flake weight. Hereafter this dataset is
-referred to as the \emph{Dibble glass data}. Second, we attempt to
-replicate the findings from the Dibble glass data by measuring the PSIA
-in a large (n = 568) set of complete, unretouched flakes coming from 45
-discrete reduction sequences produced in replicative experiments by
-three knappers who were naïve to the goals of this study. These flakes
-were made with the intent of replicating various Middle and Upper
-Paleolithic core reduction strategies from the initial decortification
-of the core through to flake production and core maintenance. These
-replicative experiments used nodules of high-quality Bergerac and
-Sénonien flint weighing from \textasciitilde480--4100 g and coming from
-the southwest region of France {[}42{]}. For each of the flakes coming
-from these reduction series, the technology and the type of hammer (hard
-hammer, soft hammer and indirect percussion) are known. Here we are
-interested in the hard hammer flakes because these are comparable to the
-Dibble hard hammer flakes, but we have included the soft hammer and
-indirect percussion flakes in the results presentation for discussion
-purposes. Today these flakes are stored in Campagne, France, and
-hereafter this dataset is referred to as the \emph{Campagne data} (see
-{[}43{]} for additional details on the structure of this dataset).
-Third, in addition, we measured a small set of flakes produced at the
-Max Planck Institute for Evolutionary Anthropology in Leipzig, Germany,
-in the context of teaching, replication, and experimentation. In this
-case, no details are known about how the flakes were produced
-(e.g.~hammer types). This set of flakes is used here only to test a
-method for measuring the PSIA. Hereafter this dataset is referred to as
-the \emph{MPI data}.
+datasets. First, we examine glass flakes (n = 142) and cores coming from
+the Dibble controlled experiments in flake formation
+{[}9,19,22,24,25{]}. This dataset has the advantage that a number of
+potentially important variables are either controlled for or were
+measured. These include the exterior platform angle, the angle of blow,
+the hammer type, raw material, and metrics such as platform thickness,
+platform width, flake length, width and thickness, and flake weight.
+Hereafter this dataset is referred to as the \emph{Dibble glass data}.
+Second, we attempt to replicate the findings from the Dibble glass data
+by measuring the PSIA in a large (n = 568) set of complete, unretouched
+flakes coming from 45 discrete reduction sequences produced in
+replicative experiments by three knappers who were naïve to the goals of
+this study. These flakes were made with the intent of replicating
+various Middle and Upper Paleolithic core reduction strategies from the
+initial decortification of the core through to flake production and core
+maintenance. These replicative experiments used nodules of high-quality
+Bergerac and Sénonien flint weighing from \textasciitilde480--4100 g and
+coming from the southwest region of France {[}42{]}. For each of the
+flakes coming from these reduction series, the technology and the type
+of hammer (hard hammer, soft hammer and indirect percussion) are known.
+Here we are interested in the hard hammer flakes because these are
+comparable to the Dibble hard hammer flakes, but we have included the
+soft hammer and indirect percussion flakes in the results presentation
+for discussion purposes. Today these flakes are stored in Campagne,
+France, and hereafter this dataset is referred to as the \emph{Campagne
+data} (see {[}43{]} for additional details on the structure of this
+dataset). Third, in addition, we measured a small set of flakes (n = 67)
+produced at the Max Planck Institute for Evolutionary Anthropology in
+Leipzig, Germany, in the context of teaching, replication, and
+experimentation. In this case, no details are known about how the flakes
+were produced (e.g.~hammer types). This set of flakes is used here only
+to test a method for measuring the PSIA. Hereafter this dataset is
+referred to as the \emph{MPI data}.
 
 The methods used to measure the PSIA varied substantially between the
 three datasets for practical reasons given the types of data available
@@ -534,18 +555,20 @@ measured from the flakes themselves.
 \begin{figure}
 \centering
 \includegraphics{PSIA_Manuscript_files/figure-latex/fig2-core_outlines-1.pdf}
-\caption{Outline of Dibble core surface (left) and the polynominal
-fitted to the core edge (right).}
+\caption{Left, an example of a semispherical glass core from the Dibble
+and colleagues experiments with landmarks on the platform outline. Above
+right, those same landmarks plotted in XY space. Below right, the core
+edge after fitting a polynominal curve to the XY landmarks.}
 \end{figure}
 
 We note that there are several potential sources of error in this
-method. First, we are assuming that each flake is struck from the center
-of the core, and while this was the intention in the glass experiments,
-there is certainly some error associated with this. Second, we are
-assuming that the flake fracture plane is parallel to the core surface
-and not twisted towards one lateral side or the other. To the extent
-that either of these assumptions is invalid, it will impact the angle
-calculation.
+method. First, we are assuming that each flake was struck from the
+center of the core. While this was the intention in the glass
+experiments, there is certainly some error associated with this. Second,
+we are assuming that the flake fracture plane is parallel to the core
+surface and not twisted towards one lateral side or the other. To the
+extent that either of these assumptions is invalid, it will impact the
+angle calculation.
 
 To verify the angles computed in this way from the Dibble glass data, we
 also measure this angle directly with digital calipers and a goniometer
@@ -559,10 +582,10 @@ described above. In the second method, we use a digital goniometer
 precise to 0.1 degrees to record this angle. The joint of the goniometer
 is positioned at the point of percussion and the jaws positioned to
 cross the two platform width points. Both of these methods come with
-possibilities for error. Both are impacted by one's ability to pinpoint
-the point of percussion. In the Dibble glass flakes, because the core
-edge is standardized, identifying the two platform width points is
-fairly straightforward. However, in the goniometer method, taking the
+possibilities for measurement error impacted by one's ability to
+pinpoint the point of percussion. In the Dibble glass flakes, because
+the core edge is standardized, identifying the two platform width points
+is fairly straightforward. However, in the goniometer method, taking the
 measurement to these points while avoiding the curvature of the bulb of
 percussion is not without some difficulties.
 
@@ -577,15 +600,15 @@ three points described above for computing the PSIA. This angle,
 therefore, can be once again computed using the dot product of these two
 line segments (specifically the arc-cosine of the dot product of the
 normalize line segments). However, there is an important difference in
-that with the Dibble glass data all computations are with two
-dimensional line segments and in the Campagne dataset the line segments
-are in three dimensions. In the latter case, the angle is computed in a
-two dimensional plane that is coincident with both line segments, but we
-note this difference because it could introduce a certain amount of
-incomparability in the two datasets. Our expectation is that these
-angles could average larger than the Dibble glass data because, for
-instance, lifting the point of percussion relative to the two platform
-points would result in a larger platform surface interior angle.
+that, with the Dibble glass data, all computations are with two
+dimensional line segments, while in the Campagne dataset the line
+segments are in three dimensions. In the latter case, the angle is
+computed in a two dimensional plane that is coincident with both line
+segments, but we note this difference because it could introduce a
+certain amount of incomparability in the two datasets. Our expectation
+is that these angles could average larger than the Dibble glass data
+because, for instance, lifting the point of percussion relative to the
+two platform points would result in a larger PSIA.
 
 Lastly, for the MPI data, we use only the goniometer method described
 above. One of us (MW) made the measurements with instructions only on
@@ -729,18 +752,19 @@ flakes dataset as measured by a digital goniometer.}
 Each of the datasets and measurement methods used to determine the PSIA
 yielded very similar results, and these results are consistent with the
 prediction based on the already known and constant angle of Hertzian
-cones (136°). While these results directly incorporate platform width
-into the EPA-PD model of flake formation, they also suggest that the
-existing model requires additional nuance. All other things being equal,
-the relationship between PSIA and platform width indicates that what
-determines the size of the flake is how far into the core it is struck.
-Specifically, because of the constant PSIA, the deeper into the core the
-flake is struck, the greater the platform width will become (and the
-thicker the flake will become as well). However, and this is the nuance,
-while platform depth is normally a good proxy for how far into the core
-the flake is struck, it is not exactly the same thing. What platform
-depth really measures is how far into the \emph{existing platform} of
-the core the flake is struck. Beveled flakes illustrate this point.
+cones in soda lime glass (136°). While these results directly
+incorporate platform width into the EPA-PD model of flake formation,
+they also suggest that the existing model requires additional nuance.
+All other things being equal, the relationship between PSIA and platform
+width indicates that what determines the size of the flake is how far
+into the core it is struck. Specifically, because of the constant PSIA,
+the deeper into the core the flake is struck, the greater the platform
+width will become (and the thicker the flake will become as well).
+However, and this is the nuance, while platform depth is normally a good
+proxy for how far into the core the flake is struck, it is not exactly
+the same thing. What platform depth really measures is how far into the
+\emph{existing platform} of the core the flake is struck. Beveled flakes
+illustrate this point.
 
 Beveled flakes are ones where material is removed behind the platform
 prior to striking the core. Dibble and colleagues recognized that
@@ -748,7 +772,7 @@ beveling altered the EPA-PD model of flake formation such that the
 interaction of platform depth and exterior platform angle no longer
 predicted flake size {[}25{]}. Beveled flakes have too thin a platform
 for their size. However, PSIA helps explain this discrepancy and thereby
-pulls beveled flakes back into an expanded EPA-PD model. Too illustrate
+pulls beveled flakes back into an expanded EPA-PD model. To illustrate
 this point, we examine some beveled flakes in the Dibble glass dataset.
 
 In the Dibble glass dataset there are 11 flakes with flat or concave
@@ -804,32 +828,32 @@ respectively.}
 \end{figure}
 
 There is some indication in the Dibble glass data that the angle of blow
-may impact the PSIA. At low angles of blow (with 0 degrees representing
-an angle of blow perpendicular to the platform, see Figure 2 in
-{[}19{]}), the PSIA is below average, and it appears to increase until
-the angle of blow reaches between 10 and 20 degrees (from perpendicular)
-after which the PSIA remains essentially unchanged (see Figure 5). With
-the caveat that the Dibble glass data set has very few cases with angles
-of less than 20 degrees, the fracture mechanics literature suggests a
-relationship like this: the angle of blow changes the direction, though
-not the size, of the Hertzian cone such that flakes struck from cores
-with a high angle of blow (oblique strike) should have ``steeper and
-less prominent cones and less salient bulbs of percussion than flakes
-which are struck more steeply {[}or more perpendicular{]}'' ({[}4{]},
-page 38). Experimentally, Magnani et al.~{[}19{]} also find a
-relationship between these variables. In their case, a negative angle of
-blow (here values less than 0 meaning a strike directed into the
-interior of the core rather than towards the core surface) results in
-smaller bulbs relative to the weight of the flake. In our Campagne data
-set, we see a difference between flakes made from direct hard-hammer
-percussion and those made with a punch technique. The latter cluster at
-the low range of PSIA. This difference could be interpreted as
-reflecting a difference in the angle of blow in that punch flakes are
-more likely to be struck perpendicularly to the platform surface (an
-angle of blow of 0). More work needs to be done, in particular in
-analyzing the Dibble glass data set where angle of blow is well
-controlled, but we suggest that increasing the angle of blow has the
-effect of tipping the direction of the Hertzian cone such that it
+may impact the PSIA. As mentioend earlier, at low angles of blow (with 0
+degrees representing an angle of blow perpendicular to the platform, see
+Figure 2 in {[}19{]}), the PSIA is below average, and it appears to
+increase until the angle of blow reaches between 10 and 20 degrees (from
+perpendicular) after which the PSIA remains essentially unchanged (see
+Figure 5). With the caveat that the Dibble glass data set has very few
+cases with angles of less than 20 degrees, the fracture mechanics
+literature suggests a relationship like this: the angle of blow changes
+the direction, though not the size, of the Hertzian cone such that
+flakes struck from cores with a high angle of blow (oblique strike)
+should have ``steeper and less prominent cones and less salient bulbs of
+percussion than flakes which are struck more steeply {[}or more
+perpendicular{]}'' ({[}4{]}, page 38). Experimentally, Magnani et
+al.~{[}19{]} also find a relationship between these variables. In their
+case, a negative angle of blow (here values less than 0 meaning a strike
+directed into the interior of the core rather than towards the core
+surface) results in smaller bulbs relative to the weight of the flake.
+In our Campagne data set, we see a difference between flakes made from
+direct hard-hammer percussion and those made with a punch technique. The
+latter cluster at the low range of PSIA. This difference could be
+interpreted as reflecting a difference in the angle of blow in that
+punch flakes are more likely to be struck perpendicularly to the
+platform surface (an angle of blow of 0). More work needs to be done, in
+particular in analyzing the Dibble glass data set where angle of blow is
+well controlled, but we suggest that increasing the angle of blow has
+the effect of tipping the direction of the Hertzian cone such that it
 intersects the core surface not as a circle but rather as an ellipse.
 This is a phenomenon that has been repeatedly documented in fracture
 mechanics {[}36,38,40{]}. Although the angle of the cone itself remains
@@ -870,7 +894,7 @@ We note that our finding that the platform surface interior angle varies
 around a constant derived from fracture mechanics appears to be
 consistent with all of the findings to date of the Dibble glass
 experiments {[}9,19,22,24,25{]}. Additionally, it perhaps helps explain
-or account for one of the more counter intuitive findings of the glass
+or account for one of the more counter-intuitive findings of the glass
 experiments, namely that flake size (weight) is not impacted by the
 force with which the core is struck {[}9{]}. In the EPA-PD model, the
 amount of force required to remove a flake given a particular
@@ -896,15 +920,15 @@ question is whether these velocities are relevant to stone knapping.
 Fracture mechanics is a massive field of study with both great potential
 and great difficulties for understanding flake formation. The potential
 is that the physical laws and models coming from fracture mechanics are,
-ultimately, how the actions of knappers are translated to usable flakes.
-The difficulties are both inherent to the field of fracture mechanics
-itself and to the complexity of the problem (some solutions require more
-time and computing power than exists). There are also difficulties
-related to the challenges of interdisciplinary work where the equations
-and goals of one field are terribly difficult to bring into another.
-This later point is clearly seen in the early fracture mechanics
-literature and the minimal impact it has had on experimental and
-replicative studies of flake formation.
+ultimately, how the actions of knappers are translated to the removal of
+usable flakes. The difficulties are both inherent to the field of
+fracture mechanics itself and to the complexity of the problem (some
+solutions require more time and computing power than exists). There are
+also difficulties related to the challenges of interdisciplinary work
+where the equations and goals of one field are terribly difficult to
+bring into another. This later point is clearly seen in the early
+fracture mechanics literature and the minimal impact it has had on
+experimental and replicative studies of flake formation.
 
 This said, our goal here was to return to this literature and to try to
 find some useful insights that could be translated to a better
@@ -914,44 +938,47 @@ the various statistical models currently in use. To do this, we
 discarded the existing focus in the experimental literature on what
 knappers do and instead focused on attributes that may be more directly
 related to fracture mechanics. Thus we focused our attention on the
-Hertzian percussion cone as a constant and wondered if it could help
-explain platform width, an aspect of flake size and shape that up to now
-has been absent from the dominant EPA-PD model of flake formation. We
-measured three different collections in multiple different ways and
-found that in each case the angle formed by the platform width and the
-point of percussion to be, on average, essentially the same as what is
-predicted from fracture mechanics for the angle of the Hertzian cone.
+Hertzian percussion cone as a constant and investigated whether it could
+help explain platform width, an aspect of flake size and shape that up
+to now has been absent from the dominant EPA-PD model of flake
+formation. We measured three different collections in multiple different
+ways and found that in each case the angle formed by the platform width
+and the point of percussion to be, on average, essentially the same as
+what is predicted from fracture mechanics for the angle of the Hertzian
+cone.
 
 We conclude that the platform surface interior angle or PSIA is an
 important determinant in flake size and shape. While it would seem that
 it is a constant and not under direct control by the knapper, the
 knapper is (unknowingly) exploiting the properties of this angle when
 preparing the platform and its contact with the core surface and when
-deciding how far into the core to strike. In our model, this is how the
-PD side of the EPA-PD model of flake formation is translated into a
-flake of a particular size and shape. In other words, it is not the PD
-that directly structures flake size but rather PD is proxy for how far
-into the core a flake is struck which then, through the effect of
-platform surface interior angle on platform width, structures the size
-and shape of the flake.
+deciding how far into the core to strike. In fact, this angle underlies
+a knapper's ability to visualize the extent of the striking platform
+prior to removing a flake. In our model, this is how the PD side of the
+EPA-PD model of flake formation is translated into a flake of a
+particular size and shape. In other words, it is not the PD that
+directly structures flake size but rather PD is proxy for how far into
+the core a flake is struck which then, through the effect of platform
+surface interior angle on platform width, structures the size and shape
+of the flake.
 
 This, however, requires further testing, particularly with beveled
-flakes where PD without PSIA performs poorly as a proxy for how far into
-the core a flake is struck. If the PSIA performs better in these
-circumstances, as the preliminary data presented here suggest, then we
-will have improved the EPA-PD model and helped to integrate what are now
-disparate studies {[}9,25{]}. Additionally, while our study shows that
-the average PSIA conforms well to predictions from fracture mechanics
-for Hertzian flake formation, it is still clear that there is
-variability around this mean. Given that there is certainly some chaos
-in flake formation, we are not sure how much variability to expect. For
-instance, sometimes the Hertzian cone crack may kink at a light angle to
-continue expanding, and this kink may contribute to the variability
-observed in PSIA {[}46,47{]}. However, it is also clear that the model
-does not work at all for some flakes. It may be the case that these
-flakes are not formed by Hertzian mechanisms (e.g.~bending flakes) and
-that alternative models will be required in these cases. Clearly more
-experiments and more data are required to begin to understand which
+flakes where PD, without PSIA, performs poorly as a proxy for how far
+into the core a flake is struck. If the PSIA performs better in these
+circumstances, as the preliminary data presented here suggest (see
+Figure 11), then we will have improved the EPA-PD model and helped to
+integrate what are now disparate studies {[}9,25{]}. Additionally, while
+our study shows that the average PSIA conforms well to predictions from
+fracture mechanics for Hertzian flake formation, it is still clear that
+there is variability around this mean. Given that there is certainly
+some chaos in flake formation, we are not sure how much variability to
+expect. For instance, sometimes the Hertzian cone crack may kink at a
+light angle to continue expanding, and this kink may contribute to the
+variability observed in PSIA {[}46,47{]}. However, it is also clear that
+the model does not work at all for some flakes. It may be the case that
+these flakes are not formed by Hertzian mechanisms (e.g.~bending flakes)
+and that alternative models will be required in these cases. Clearly
+more experiments and more data are required to begin to understand which
 kinds of flakes fail the PSIA model presented here, and these flakes
 will require additional insights into models of flake formation.
 
@@ -960,12 +987,15 @@ will require additional insights into models of flake formation.
 
 Michel Brenet and Laurence Bourguignon produced the Campagne data set,
 and we thank them for allowing us access to this important collection.
-We thank the Max Planck Society for funding portions of this work. SPM,
-MW, WA, ZR and TD thank Jean-Jacques Hublin for his support this
-research agenda. Sadly Harold Dibble died before the main findings of
-this paper were discovered. Without his vision and his efforts to build
-a data set of flakes made under controlled conditions, this paper would
-not have been possible. We dedicate this paper to him.
+We thank the Max Planck Society for funding portions of this work. This
+project has received funding from the European Research Council (ERC)
+under the European Union's Horizon 2020 research and innovation program
+(grant agreement n° 714658; STONECULT project). SPM, MW, WA, ZR and TD
+thank Jean-Jacques Hublin for his continued support of our research
+agenda. Sadly Harold Dibble died before the main findings of this paper
+were discovered. Without his vision and his efforts to build a data set
+of flakes made under controlled conditions, this paper would not have
+been possible. We dedicate this paper to him.
 
 \hypertarget{references}{%
 \section*{References}\label{references}}

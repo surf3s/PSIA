@@ -44,3 +44,5 @@ vignettes/*.pdf
 *.tex
 *.log
 *.svg
+*.log
+*.tex
