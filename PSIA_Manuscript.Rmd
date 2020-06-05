@@ -97,7 +97,7 @@ rmarkdown::render('PSIA_Manuscript.rmd')
 knitr::opts_chunk$set(tidy = FALSE, echo = FALSE, warning = FALSE, message = FALSE, comment = NA, cache = FALSE)
 
 # To have the figures embedded in this document, set this to FALSE
-tiff_figures = TRUE
+tiff_figures = FALSE
 
 ```
 
@@ -758,7 +758,7 @@ This, however, requires further testing, particularly with beveled flakes where 
 
 # Acknowledgements
 
-Michel Brenet and Laurence Bourguignon produced the Campagne data set, and we thank them for allowing us access to this important collection.  We thank the Max Planck Society for funding portions of this work.  LL and JR received funding from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation program  (grant agreement n° 714658; STONECULT project).  TD received funding from the European Union’s Framework Programme for Research and Innovation Horizon 2020 (2014-2020) under the Marie Skłodowska-Curie grant agreement No. 751125SPM, MW, WA, ZR and TD thank Jean-Jacques Hublin for his continued support of our research agenda.  Sadly Harold Dibble died before the main findings of this paper were discovered.  Without his vision and his efforts to build a data set of flakes made under controlled conditions, this paper would not have been possible.  We dedicate this paper to him.
+Michel Brenet and Laurence Bourguignon produced the Campagne data set, and we thank them for allowing us access to this important collection.  We thank the Max Planck Society for funding portions of this work.  LL and JR received funding from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation program  (grant agreement n° 714658; STONECULT project).  TD received funding from the European Union’s Framework Programme for Research and Innovation Horizon 2020 (2014-2020) under the Marie Skłodowska-Curie grant agreement No. 751125.  Claudio Tennie provided feedback on the ideas and comments on the manuscript.  SPM, MW, WA, ZR and TD thank Jean-Jacques Hublin for his continued support of our research agenda.  Sadly Harold Dibble died before the main findings of this paper were discovered.  Without his vision and his efforts to build a data set of flakes made under controlled conditions, this paper would not have been possible.  We dedicate this paper to him.
 
 
 # Supplemental Information
