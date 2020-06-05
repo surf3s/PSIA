@@ -96,6 +96,7 @@ rmarkdown::render('PSIA_Manuscript.rmd')
 
 knitr::opts_chunk$set(tidy = FALSE, echo = FALSE, warning = FALSE, message = FALSE, comment = NA, cache = FALSE)
 
+# To have the figures embedded in this document, set this to FALSE
 tiff_figures = TRUE
 
 ```
@@ -180,6 +181,25 @@ my_theme = my_theme + theme(panel.grid.major.x = element_blank())
 
 ```
 
+```{r figure_captions}
+
+# All captions are composed here so that they can either be embedded or listed separately at the end of this document.
+fig_captions = list(length = 12)
+fig_captions[[1]] = "Illustration of several flake attributes discussed here."
+fig_captions[[2]] = "Left, an example of a semispherical glass core from the Dibble and colleagues experiments with landmarks on the platform outline.  Above right, those same landmarks plotted in XY space.  Below right, the core edge after fitting a polynominal curve to the XY landmarks."
+fig_captions[[3]] = "Distribution of estimated PSIA based on the Dibble glass flakes."
+fig_captions[[4]] = "PW, PD, EPA and weight against the estimated PSIA based on the Dibble glass flakes."
+fig_captions[[5]] = "AOB against the estimated platform surface interior angles based on the Dibble glass flakes."
+fig_captions[[6]] = "The actual platform depth to platform width data from the Dibble glass core flakes and the estimated platform width using the average platform surface interior angle calculated previously."
+fig_captions[[7]] = "A comparison of the estimated platform surface interior angle, this same angle as calculated from caliper measurements, and this same angle measured with a goniometer.  All measures are in degrees."
+fig_captions[[8]] = 'The distributions of platform surface interior angle as directly measured with a goniometer and as calculated from caliper measurements.'
+fig_captions[[9]] = "Distribution of PSIA in the Campagne data set color coded by percussion type."
+fig_captions[[10]] = "PSIA as a function of platform width, platform depth, and EPA in the experimental flake collection.  Color coding is the same as in Figure 8."
+fig_captions[[11]] = 'Distribution of platform surface interior angle in the MPI flakes dataset as measured by a digital goniometer.'
+fig_captions[[12]] = "Platform depth to platform width including beveled flakes (red) and non-beveled flakes (black) (top).  Estimated points in blue are the same beveled flakes but with the platform depth predicted using the average PSIA and their actual platform width.  At the bottom, the actual flake weight is compared to the predicted flake weight based on an EPA-PD model for non-beveled flakes (points in black).  The predicted weight using the actual (w/o PSIA) and the modeled (with PSIA) platform depths for the beveled flakes are then plotted as well in red and blue respectively."
+  
+```
+
 # Introduction
 
 There is considerable literature dedicated to understanding how flakes form.  This understanding has come from work following several broad approaches including fracture mechanics (e.g. [@cotterell_essential_1985; @cotterell_formation_1987; @cotterell_mechanics_1979; @speth_mechanical_1972]), controlled experiments (e.g. [@speth_experimental_1974; @speth_miscellaneous_1975; @speth_role_1981; @dibble_effect_1995; @dibble_introducing_2009-1; @dibble_new_1981-1; @pelcin_effect_1997; @pelcin_effect_1997-1; @pelcin_formation_1997]), replicative experiments (e.g. [@davis_quantifying_1998; @eren_why_2012; @mourre_early_2010]), and attribute analysis of archaeological assemblages.  These approaches each have their own strengths and weaknesses; however, one way to think about the differences among them is in the directionality of inference.  Fracture mechanics starts with first principles, or laws drawn from physics and material sciences in particular, concerning how fractures should form in brittle solids.  These are then used to make predictions, typically with explicit mathematical models, about how flakes should look (size and shape) under varying conditions of force application and solid material properties.  These predictions are then typically tested experimentally.  To the contrary, controlled and replicative experiments and studies of actual lithic assemblages look at empirical regularities in flake size and shape under varying conditions of core preparation and flaking (where the core is struck, the hammer type, how the platform is prepared, the angle of strike, etc.).  The observed outcomes are then summarized as statistical models of flake formation.  From these models one can try to infer first principles, but for reasons discussed next, this is usually not done.  All of these approaches to understanding flake formation are, of course, valid and useful.  Ideally, what is learned from actually doing (experiments) and what is learned from knowing how it should work in principle (fracture mechanics) inform each other in an iterative loop.  
@@ -190,7 +210,7 @@ The same is true of studies of flake formation and the role of fracture mechanic
 
 So instead, while some papers on controlled experiments in flake formation may cite studies from fracture mechanics, their approaches are all based on statistical modeling of the empirical relationships between variables of flaking and flake outcomes.  Speth's work on this topic is a good example.  His 1972 paper uses fracture mechanics to derive a formula to predict flake size which is then tested against a set of actual flakes from a prehistoric site.  By 1975 and again in 1981, Speth had moved to experimental approaches (ball bearings on glass) and the connection back to fracture mechanics had all but disappeared.  Dibble @dibble_new_1981-1 goes further and dismisses fracture mechanics from the start as nearly irrelevant.  Instead of looking to fracture mechanics for insights into what to study, experimental studies are being informed by replicative knappers and observations on how actual lithic assemblages vary.  Dibble [@dibble_new_1981-1; @dibble_platform_1997] is explicit in stating that his experimental research is based on what knappers would have been able to control.  In these experiments, coming back to the race car analogy, we are carefully building cars controlling for engine size, wheel configurations, foils, etc., things that are generally thought to be important for making a car go fast, and then measuring their speeds.  Again, though, because it is also difficult to go in the other direction (from statistical modeling back to first principles), the controlled experiment papers have not produced a general model of how flakes form.  Instead, we have a series of statistical models that are difficult to relate to one another (e.g. @magnani_flake_2014-1).  Part of the difficulty stems from the fact that different knapping variables are likely related in complex ways during flake formation, yet their effects on flake variation are limited to a similar set of size and shape attributes. For instance, Magnani et al. [@magnani_flake_2014-1] showed that changing the angle of blow, the location of percussion and hammer hardness all result in similar flake attribute variation. While regression models can capture the influence of these individual knapping factors, reconciling them into a causal sequence of flake formation remains challenging without the guidance of a general model.
 
-```{r fig1, fig.cap = "Illustration of several flake attributes discussed here.", fig.height = 2, fig.width = 5, out.width = '350px'}
+```{r fig1, fig.cap = fig_captions[[1]], fig.height = 2, fig.width = 5, out.width = '350px'}
 
 if (tiff_figures) cat('[place Figure 1 here]')
 if (!tiff_figures) knitr::include_graphics('Figure_01.png')
@@ -213,7 +233,7 @@ We examine the platform surface interior angle in three different datasets.  Fir
 
 The methods used to measure the PSIA varied substantially between the three datasets for practical reasons given the types of data available to us and because we wanted to try different methods to begin to have some idea of how best to measure this angle in future studies.  First, for the Dibble glass data, we used the following procedure.  Dibble and colleagues used several core forms, but the first and most common type is what was called the semispherical core.  This core (reproduced here in Figure 2) looks like a loaf of bread with flat, squared off sides and back, and a curved or domed flaking surface.  An unworked example of this core type was scanned using an NextEngine 3D laser scanner.  The resulting mesh was then processed in R to rotate the platform to be perpendicular to the Z axis (or coincident with the XY plane).  The XY coordinates of the triangles forming the platform were then extracted from this model and a convex hull fit to this cloud of points to have the full outline of the platform on the Dibble semispherical cores (see Figure 2).  Next, we extracted just the portion of the outline that includes where flakes are struck from these cores, and we fit a polynomial curve to these points.  Using the formula for this curve, we created a series of equally spaced (in X) points along the platform edge (see Figure 2).  We then filtered the Dibble glass data to have only flakes made from the semispherical cores by hard hammer.  We include only flakes with a feather termination, and we exclude flakes coming from experiments on platform beveling [@leader_effects_2017] and so-called 'on-edge' core strikes [@magnani_flake_2014-1].  Knowing that Dibble and colleagues tried to strike flakes from these cores at the center or peak of the core surface curvature, we use the platform depths reported for these flakes to position the point of percussion relative to the set of platform edge outline points described above.  Next, we find the symmetrical pair of platform edge outline points, one to the left and one to the right of the point of percussion, that yield a platform width equal to the reported platform width for each flake.  Finally, the PSIA is calculated (arc-cosine of the dot product of two normalize vectors) as the angle between the two line segments formed by the left platform width point and the point of percussion and the right platform point and the point of percussion.  In the results presented below, this angle is referred to as the *estimated* PSIA to indicate that is is not directly measured from the flakes themselves.
 
-```{r fig2-core_outlines, fig.cap = "Left, an example of a semispherical glass core from the Dibble and colleagues experiments with landmarks on the platform outline.  Above right, those same landmarks plotted in XY space.  Below right, the core edge after fitting a polynominal curve to the XY landmarks.", fig.height = 2, fig.width = 3.5}
+```{r fig2-core_outlines, fig.cap = fig_captions[[2]], fig.height = 2, fig.width = 3.5}
 
 p = ggplot()
 p = p + annotation_raster(readPNG('Figure_2a.png'), -Inf, Inf, -Inf, Inf)
@@ -326,11 +346,9 @@ dibble_remeasured = merge(dibble_remeasured, dibble, by = c('ID')) %>%
 
 
 
-```{r fig3-dibble_psia_histogram, fig.cap = "Distribution of estimated PSIA based on the Dibble glass flakes.", fig.width = 5, fig.height = 2.5}
+```{r fig3-dibble_psia_histogram, fig.width = 5, fig.height = 2.5, fig.cap = fig_captions[[3]]}
 
 maincolumn_width_theme = theme(text = element_text(size = 10))
-
-#plot_angles = data.frame(psia = psia)
 
 p = ggplot(data.frame(psia = psia), aes(psia))
 p = p + geom_histogram(breaks = seq(100, 180, by = 5))
@@ -351,7 +369,7 @@ if (tiff_figures) graphics.off()
 
 Figure 3 shows the distribution of estimated PSIA in the Dibble glass dataset.  The distribution has a mean of `r round(mean(psia),2)`±`r round(sd(psia),2)`.  Variation in this angle does not seem to be related to platform depth, exterior platform angle or weight (Figure 4).  There is a relationship between platform width and the platform surface interior angle such that larger angles result in wider platforms, which is to be expected (see Figure 4).  
 
-```{r fig4-psia_to_other_flake_measures, fig.cap = "PW, PD, EPA and weight against the estimated PSIA based on the Dibble glass flakes.", fig.width = 5}
+```{r fig4-psia_to_other_flake_measures, fig.cap = fig_captions[[4]], fig.width = 5}
 
 full_width_theme = theme(text = element_text(size = 6))
 
@@ -393,7 +411,7 @@ if (tiff_figures) graphics.off()
 
 There also appears to be a relationship between the angle of blow and the PSIA (Figure 5).  While there are fewer cases with angles of blow less than 20, there is some indication in the data that lower angles of blow may be correlated with lower PSIA.  However, once an angle of blow is between 10-20 degrees or higher, the angle of blow is not correlated with the PSIA.
 
-```{r fig5-AOB_to_PSIA, fig.height = 2.5, fig.width = 4, fig.cap = "AOB against the estimated platform surface interior angles based on the Dibble glass flakes."}
+```{r fig5-AOB_to_PSIA, fig.height = 2.5, fig.width = 4, fig.cap = fig_captions[[5]]}
 
 p = ggplot()
 p = p + geom_point(plot_data, mapping = aes(AOB, psia), size = .65, alpha = .65)
@@ -463,7 +481,7 @@ results = data.frame(pd,
 
 ```
 
-```{r fig6-pd_pw_with_estimated_pw, fig.height = 2.5, fig.width = 5, fig.cap = "The actual platform depth to platform width data from the Dibble glass core flakes and the estimated platform width using the average platform surface interior angle calculated previously."}
+```{r fig6-pd_pw_with_estimated_pw, fig.height = 2.5, fig.width = 5, fig.cap = fig_captions[[6]]}
 
 plot_data = plot_data %>%
   select(pd, pw) %>%
@@ -491,7 +509,7 @@ if (tiff_figures) graphics.off()
 
 Figures 7 and 8 show comparisons of the results of the estimated PSIA presented above with direct measurements of this angle on a sample of `r nrow(dibble_remeasured)` of the Dibble glass flakes.  For this sample, the PSIA is `r round(mean(dibble_remeasured$psia),2)`±`r round(sd(dibble_remeasured$psia),2)`.  When measured with a digital goniometer the angle is `r round(mean(dibble_remeasured$PSIA_GONIOMETER),2)`±`r round(sd(dibble_remeasured$PSIA_GONIOMETER),2)`, and when measured with digital calipers and calculated using trigonometry the angle is `r round(mean(dibble_remeasured$psia_trig),2)`±`r round(sd(dibble_remeasured$psia_trig),2)`.
 
-```{r fig7_remeasure_comparisons, fig.height = 2, fig.width = 5, fig.cap = "A comparison of the estimated platform surface interior angle, this same angle as calculated from caliper measurements, and this same angle measured with a goniometer.  All measures are in degrees."}
+```{r fig7_remeasure_comparisons, fig.height = 2, fig.width = 5, fig.cap = fig_captions[[7]]}
 
 p = ggplot(dibble_remeasured, aes(PSIA_GONIOMETER, psia_trig))
 p = p + geom_point(size = 1.5, alpha = .5)
@@ -536,7 +554,7 @@ if (tiff_figures) graphics.off()
 
 ```
 
-```{r fig8_remeasure_distributions, fig.height = 2.5, fig.width = 5, fig.cap = 'The distributions of platform surface interior angle as directly measured with a goniometer and as calculated from caliper measurements.'}
+```{r fig8_remeasure_distributions, fig.height = 2.5, fig.width = 5, fig.cap = fig_captions[[8]]}
 
 p = ggplot(dibble_remeasured, aes(PSIA_GONIOMETER))
 p = p + geom_histogram(binwidth = 5)
@@ -568,7 +586,7 @@ if (tiff_figures) graphics.off()
 
 The distribution of the PSIA for the `r nrow(campagne)` flakes in the Campagne dataset is shown in Figure 9.  In the hard hammer flakes only, which is the technique used in our subset of the Dibble glass dataset, the mean platform surface interior angle is `r round(mean(campagne %>% filter(Technique=='Hard Hammer') %>% select(psia) %>% pull()),2)`±`r round(sd(campagne %>% filter(Technique=='Hard Hammer') %>% select(psia) %>% pull()),2)`.  Because data are available for punch and soft hammer flakes, these are presented as well.  Punch flakes have a lower PSIA (`r round(mean(campagne %>% filter(Technique=='Punch') %>% select(psia) %>% pull()),2)`±`r round(sd(campagne %>% filter(Technique=='Punch') %>% select(psia) %>% pull()),2)`), and soft hammer flakes have a mean of `r round(mean(campagne %>% filter(Technique=='Soft Hammer') %>% select(psia) %>% pull()),2)`±`r round(sd(campagne %>% filter(Technique=='Soft Hammer') %>% select(psia) %>% pull()),2)`.  The mean PSIA for all flakes in the Campagne data set is `r round(mean(campagne$psia),2)`±`r round(sd(campagne$psia),2)`. 
 
-```{r fig9-camp_angles, fig.width = 5, fig.height = 2.5, fig.cap = "Distribution of PSIA in the Campagne data set color coded by percussion type."}
+```{r fig9-camp_angles, fig.width = 5, fig.height = 2.5, fig.cap = fig_captions[[9]]}
 
 p = ggplot(campagne, aes(psia, fill = Technique))
 p = p + geom_histogram(binwidth = 5)
@@ -590,7 +608,7 @@ if (tiff_figures) graphics.off()
 
 In the Campagne data, PSIA does not covary with platform width, platform depth or the shape of the platform (as measured by the ratio of platform width to platform depth) (Figure 10).  Though sample size is potentially a problem, there is perhaps an indication that for larger platform depths, there is less variability in the PSIA.
 
-```{r fig10-PSIA_to_other_measures, fig.height = 2, fig.width = 5, fig.cap = "PSIA as a function of platform width, platform depth, and EPA in the experimental flake collection.  Color coding is the same as in Figure 8."}
+```{r fig10-PSIA_to_other_measures, fig.height = 2, fig.width = 5, fig.cap = fig_captions[[10]]}
 
 p = ggplot(campagne, aes(psia, pw, color = Technique))
 p = p + geom_point(show.legend = FALSE, size = .35, alpha = .65)
@@ -625,7 +643,7 @@ if (tiff_figures) graphics.off()
 
 The distribution of PSIA in the MPI dataset as measured by a digital goniometer is presented in Figure 11.  This dataset contains ```r nrow(MPI_flakes)``` flakes, and the mean is `r round(mean(MPI_flakes$PSIA_GONIOMETER),2)`±`r round(sd(MPI_flakes$PSIA_GONIOMETER),2)`, in keeping with the other datasets.
 
-```{r fig11-mpi_data, fig.height = 2.5, fig.width = 5, fig.cap = 'Distribution of platform surface interior angle in the MPI flakes dataset as measured by a digital goniometer.'}
+```{r fig11-mpi_data, fig.height = 2.5, fig.width = 5, fig.cap = fig_captions[[11]]}
 
 p = ggplot(MPI_flakes, aes(PSIA_GONIOMETER))
 p = p + geom_histogram(breaks = seq(110, 170, by = 5))
@@ -684,7 +702,7 @@ In the Dibble glass dataset there are `r nrow(bevel_flakes)` flakes with flat or
 
 This modeled platform depth is then be used to improve the EPA-PD model to give better estimates of flake size.  The main aspect of size that Dibble and colleagues have focused on with the EPA-PD model is weight, and so we model flake weight as a function of EPA, platform depth and the interaction of the two (see Figure 12).  The cube root of weight is used to correct for the different dimensions in the model.  Next, we use this same model to predict flake weight in the beveled flakes using the platform depth as originally measured on these beveled flakes.  In this case, the modeled flake weights are much too low in comparison to their actual weights (red points in Figure 12).  Finally, we use the predicted platform depth for the beveled flakes, as modeled above, to predict flake weight again using the non-beveled flake model.  In this case, the flake weights plot in among the rest of the non-beveled flakes (blue points in Figure 12).  Thus the beveled flakes are the expected size when we think of PD in the EPA-PD model not as a measure of platform depth but rather as a measure of how far into the core the flake is struck, which then determines the flake width via the PSIA given the shape of the platform edge.  Beveling does not change the expected size of these flakes when flake formation is viewed this way.
 
-```{r fig12-bevel_with_estimated_pd, fig.width = 5, fig.height = 5, fig.cap = "Platform depth to platform width including beveled flakes (red) and non-beveled flakes (black) (top).  Estimated points in blue are the same beveled flakes but with the platform depth predicted using the average PSIA and their actual platform width.  At the bottom, the actual flake weight is compared to the predicted flake weight based on an EPA-PD model for non-beveled flakes (points in black).  The predicted weight using the actual (w/o PSIA) and the modeled (with PSIA) platform depths for the beveled flakes are then plotted as well in red and blue respectively."}
+```{r fig12-bevel_with_estimated_pd, fig.width = 5, fig.height = 5, fig.cap = fig_captions[[12]]}
 
 p = ggplot(dibble_inc_bevel, aes(PD, PW, color = Beveling))
 p = p + geom_point(alpha = .5)
@@ -742,11 +760,24 @@ This, however, requires further testing, particularly with beveled flakes where 
 
 Michel Brenet and Laurence Bourguignon produced the Campagne data set, and we thank them for allowing us access to this important collection.  We thank the Max Planck Society for funding portions of this work.  LL and JR received funding from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation program  (grant agreement n° 714658; STONECULT project).  TD received funding from the European Union’s Framework Programme for Research and Innovation Horizon 2020 (2014-2020) under the Marie Skłodowska-Curie grant agreement No. 751125SPM, MW, WA, ZR and TD thank Jean-Jacques Hublin for his continued support of our research agenda.  Sadly Harold Dibble died before the main findings of this paper were discovered.  Without his vision and his efforts to build a data set of flakes made under controlled conditions, this paper would not have been possible.  We dedicate this paper to him.
 
+
 # Supplemental Information
 
 S1 - rMarkdown file of this document
 
 S2 - datasets.zip with data files, figures, bibliography and format file.
+
+
+```{r results = 'asis'}
+
+if (tiff_figures) {
+  cat('# Figures  \n')
+  for (i in 1:length(fig_captions)) {
+    cat("**Figure ",i,"**.  ", fig_captions[[i]],"  \n", sep = '')
+  }
+}
+
+```
 
 # References
 
