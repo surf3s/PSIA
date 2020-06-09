@@ -78,7 +78,7 @@ abstract: |
 ---
 
 <!--
-This is the R Markdown document used to create the manuscript
+This is the rMarkdown document used to create the manuscript
 and its figures/tables.
 
 It requires:
