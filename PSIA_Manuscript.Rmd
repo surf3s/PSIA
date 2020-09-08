@@ -9,10 +9,10 @@ author:
 - affiliation: UPENN
   email: aylarabd@sas.upenn.edu
   name: Aylar Abdolahzadeh
-- affiliation: NMSA
+- affiliation: [NMSA, MPI]
   email: will.archer@nasmus.co.za
   name: Will Archer
-- affiliation: LMU
+- affiliation: [LMU, CRCAS]
   email: a.chan@lmu.de
   name: Annie Chan
 - affiliation: Leiden
@@ -46,8 +46,8 @@ address:
 - address: Department of Human Evolution, Max Planck Institute for Evolutionary Anthropology,
     Leipzig, Germany
   code: MPI
-- address: Department of Anthropology, University of Pennsylvania, Philadelphia, PA,
-    USA
+- address: Department of Anthropology, University of Pennsylvania, Philadelphia, Pennsylvania,
+    United States of America
   code: UPENN
 - address: Department of Archaeology and Anthropology, National Museum, Bloemfontein, South Africa
   code: NMSA
@@ -59,12 +59,15 @@ address:
 - address: Centre for Archaeological Science, School of Earth, Atmospheric and Life
     Sciences, University of Wollongong, Wollongong, Australia
   code: UOW
-- address:  Department of Sociology and Anthropology, The College of New Jersey, Ewing, New Jersey, USA
+- address:  Department of Sociology and Anthropology, The College of New Jersey, Ewing, New Jersey,
+    United States of America
   code: CNJ
 - address: Department of Asian Studies, Ludwig-Maximilians-Universität München, Munich, Germany
   code: LMU
-- address: Department of Anthropology, Tozzer Anthropology Building, Harvard University, Cambridge MA, USA
+- address: Department of Anthropology, Harvard University, Cambridge, Massachusetts, United States of America
   code: HARVARD
+- address: Centre de Recherche sur les Civilisations de l’Asie Orientale, Paris, France
+  code: CRCAS
 output:
   pdf_document: rticles::plos_article
   word_document: default
@@ -74,7 +77,7 @@ header-includes:
 - \usepackage{setspace}\doublespacing
 bibliography: bibliography.bib
 abstract: |
-  Four ways archaeologist have tried to gain insights into how flintknapping creates lithic variability are fracture mechanics, controlled experimentation, replication and attribute studies of lithic assemblages.  Fracture mechanics has the advantage of drawing more directly on first principles derived from physics and material sciences, but its relevance to controlled experimentation, replication and lithic studies more generally has been limited.  Controlled experiments have the advantage of being able to isolate and quantify the contribution of individual variables to knapping outcomes, and the results of these experiments have provided models of flake formation that when applied to the archaeological record of flintknapping have provided insights into past behavior. Here we develop a linkage between fracture mechanics and the results of previous controlled experiments to increase their combined explanatory and predictive power.  We do this by documenting the influence of Herztian cone formation, a constant in fracture mechanics, on flake platforms.  We find that the platform width is a function of the Hertzian cone constant angle and the geometry of the platform edge.  This finding strengthens the foundation of one of the more influential models emerging from the controlled experiments.  With additional work, this should make it possible to merge more of the experimental results into a more comprehensive model of flake formation.
+  Four ways archaeologists have tried to gain insights into how flintknapping creates lithic variability are fracture mechanics, controlled experimentation, replication and attribute studies of lithic assemblages.  Fracture mechanics has the advantage of drawing more directly on first principles derived from physics and material sciences, but its relevance to controlled experimentation, replication and lithic studies more generally has been limited.  Controlled experiments have the advantage of being able to isolate and quantify the contribution of individual variables to knapping outcomes, and the results of these experiments have provided models of flake formation that when applied to the archaeological record of flintknapping have provided insights into past behavior. Here we develop a linkage between fracture mechanics and the results of previous controlled experiments to increase their combined explanatory and predictive power.  We do this by documenting the influence of Herztian cone formation, a constant in fracture mechanics, on flake platforms.  We find that the platform width is a function of the Hertzian cone constant angle and the geometry of the platform edge.  This finding strengthens the foundation of one of the more influential models emerging from the controlled experiments.  With additional work, this should make it possible to merge more of the experimental results into a more comprehensive model of flake formation.
 ---
 
 <!--
@@ -82,12 +85,12 @@ This is the rMarkdown document used to create the manuscript
 and its figures/tables.
 
 It requires:
-1) the png, tidyverse, retistruct and gridExtra libraries,
+1) the png, tidyverse, retistruct, gridExtra and ggpubr libraries,
 2) the data sets and two figures (datasets.zip),
 3) the citations included here (bibliography.bib - also found in datasets.zip),
 4) and the format file (plos.csl - also found in datasets.zip).
 To compile this markdown document, place all these files in one folder and
-either use the built in rStudio interface or issue the following command:
+either build with the rStudio interface or issue the following command:
 rmarkdown::render('PSIA_Manuscript.rmd')
 
 -->
@@ -97,7 +100,7 @@ rmarkdown::render('PSIA_Manuscript.rmd')
 knitr::opts_chunk$set(tidy = FALSE, echo = FALSE, warning = FALSE, message = FALSE, comment = NA, cache = FALSE)
 
 # To have the figures embedded in this document, set this to FALSE
-tiff_figures = FALSE
+tiff_figures = TRUE
 
 ```
 
@@ -107,6 +110,10 @@ library(tidyverse)
 library(retistruct)
 library(gridExtra)
 library(png)
+
+# This library is used only for Figure 10
+# to have a legend across the bottom.
+library(ggpubr)
 
 # Some functions for dealing with vectors and angles
 normals = function(xyz) {
@@ -166,18 +173,12 @@ min_y = min(curve_y)
 curve_y = curve_y - min_y
 curve_xy = cbind(curve_x, curve_y)
 
-my_theme = theme(
-  panel.background = element_rect(fill = 'grey95'),
-  strip.background = element_blank(),
-  panel.grid.minor = element_blank(),
-  panel.grid.major = element_blank(),
-  panel.border = element_blank(),
-  legend.background = element_blank())
-
 my_theme = theme_minimal()
 my_theme = my_theme + theme(panel.grid.minor = element_blank())
 my_theme = my_theme + theme(panel.grid.major.x = element_blank())
 
+my_theme_smaller_font = my_theme + theme(axis.text = element_text(size = 8),
+                                         axis.title = element_text(size = 9))
 
 ```
 
@@ -185,7 +186,7 @@ my_theme = my_theme + theme(panel.grid.major.x = element_blank())
 
 # All captions are composed here so that they can either be embedded or listed separately at the end of this document.
 fig_captions = list(length = 12)
-fig_captions[[1]] = "Illustration of several flake attributes discussed here."
+fig_captions[[1]] = "Illustration of several flake attributes discussed here.  On the left is a schematic semispherical core used in the Dibble and colleagues glass experiments.  On right is a schematic profile of the core through the point of percussion."
 fig_captions[[2]] = "Left, an example of a semispherical glass core from the Dibble and colleagues experiments with landmarks on the platform outline.  Above right, those same landmarks plotted in XY space.  Below right, the core edge after fitting a polynominal curve to the XY landmarks."
 fig_captions[[3]] = "Distribution of estimated PSIA based on the Dibble glass flakes."
 fig_captions[[4]] = "PW, PD, EPA and weight against the estimated PSIA based on the Dibble glass flakes."
@@ -217,11 +218,11 @@ if (!tiff_figures) knitr::include_graphics('Figure_01.png')
 
 ```
 
-The strongest and most influential model derived from controlled experiments is the exterior platform angle and platform depth (EPA-PD) model.  The EPA-PD model states that flake size (weight) is primarily a function of two important variables: exterior platform angle (EPA) and platform depth (PD) (Figure 1).  Increasing either increases flake size, but the relationship between the two is geometric such that at higher values of EPA changes in PD have a greater effect on flake size.  The EPA-PD model has been replicated in multiple ways, including experiments in the material sciences [@dibble_new_1981-1; @dibble_effect_1995; @speth_miscellaneous_1975; @speth_role_1981; @chai_edge_2007; @dogandzic_results_2020] and in actual lithic assemblages (e.g. [@dibble_platform_1997; @lin_utility_2013-1; @rezek_two_2018-1]).  It is also argued that in certain conditions, EPA-PD has a stronger effect on flake size and shape than does core surface morphology [@pelcin_effect_1997; @rezek_relative_2011-1].  The EPA-PD model of flake formation, however, is constrained in what it can explain.  For instance, beveled flakes, where the volume behind the platform is thinned, are not easily included into the model @leader_effects_2017.  Beveled flakes are typically larger (weight) than the EPA-PD models predicts given their lower platform depths.  The EPA-PD model also  does not explain why flake size and shape change with varying angles of blow and platform shape [@clarkson_estimating_2011-1; @dibble_introducing_2009-1; @magnani_flake_2014-1].  It also does not account for flake width, which is obviously a major component of shape.  It is worth noting that while the percentage of variability in weight explained by the EPA-PD model (R^2^) is typically high in the Dibble glass experiments, it is far lower in actual lithic assemblages [@clarkson_estimating_2011-1].  It is low enough that its utility for measuring retouch intensity (i.e. knowing how much mass has been removed from a flake through retouch) is limited [@davis_quantifying_1998; @shott_flake_2000; @dogandzic_edge_2015; @hiscock_generalization_2010].  As a result, there have been various proposals to improve the statistical modeling of flake weight (or size) from different sets of measures (e.g. [@archer_geometric_2018; @Braun2010; @dogandzic_edge_2015; @muller_estimating_2014]).  Again, though, without a general model, it is not really clear why one measurement technique should work better than another.  Because of this, the success of these models is measured by the amount of empirical variation the models can account for (i.e. R^2^ values) rather than against theoretical predictions.  This approach reflects the fundamental issue that our knowledge of how flake formation works is still too limited to be translated into measurable attributes.  Instead, the majority of the lithic attributes commonly measured by archaeologists are derived from intuitive observations through actualistic flintknapping (i.e., when we do x, flakes tend to show y).  Whether these attributes are meaningful for explaining flake variation is not justified *a priori* by theoretical models of flake formation. 
+The strongest and most influential model derived from controlled experiments is the exterior platform angle and platform depth (EPA-PD) model.  The EPA-PD model states that flake size (weight) is primarily a function of two important variables: exterior platform angle (EPA) and platform depth (PD) (Figure 1).  Increasing either of these variables will increase flake size, but the relationship between the two is geometric such that at higher values of EPA changes in PD have a greater effect on flake size.  The EPA-PD model has been replicated in multiple ways, including experiments in the material sciences [@dibble_new_1981-1; @dibble_effect_1995; @speth_miscellaneous_1975; @speth_role_1981; @chai_edge_2007; @dogandzic_results_2020] and in actual lithic assemblages (e.g. [@dibble_platform_1997; @lin_utility_2013-1; @rezek_two_2018]).  It is also argued that in certain conditions, EPA-PD has a stronger effect on flake size and shape than does core surface morphology [@pelcin_effect_1997; @rezek_relative_2011-1].  The EPA-PD model of flake formation, however, is constrained in what it can explain.  For instance, beveled flakes, where the volume behind the platform is thinned, are not easily included into the model @leader_effects_2017.  Beveled flakes are typically larger (weight) than the EPA-PD models predicts given their lower platform depths.  The EPA-PD model also  does not explain why flake size and shape change with varying angles of blow and platform shape [@clarkson_estimating_2011-1; @dibble_introducing_2009-1; @magnani_flake_2014-1].  It also does not account for flake width, which is obviously a major component of shape.  It is worth noting that while the percentage of variability in weight explained by the EPA-PD model (R^2^) is typically high in the Dibble glass experiments, it is far lower in actual lithic assemblages [@clarkson_estimating_2011-1].  It is low enough that its utility for measuring retouch intensity (i.e. knowing how much mass has been removed from a flake through retouch) is limited [@davis_quantifying_1998; @shott_flake_2000; @dogandzic_edge_2015; @hiscock_generalization_2010].  As a result, there have been various proposals to improve the statistical modeling of flake weight (or size) from different sets of measures (e.g. [@archer_geometric_2018; @Braun2010; @dogandzic_edge_2015; @muller_estimating_2014]).  Again, though, without a general model, it is not really clear why one measurement technique should work better than another.  Because of this, the success of these models is measured by the amount of empirical variation the models can account for (i.e. R^2^ values) rather than against theoretical predictions.  This approach reflects the fundamental issue that our knowledge of how flake formation works is still too limited to be translated into measurable attributes.  Instead, the majority of the lithic attributes commonly measured by archaeologists are derived from intuitive observations through actualistic flintknapping (i.e., when we do x, flakes tend to show y).  As Speth [@speth_mechanical_1972, pp. 34-36] noted nearly a half century ago, how or even whether these attributes are indeed meaningful for explaining flake variation are typically not justified *a priori* by theoretical models of flake formation. 
 
 Here we propose to build on the EPA-PD model by 1) switching the focus from variables controlled by the knapper to variables that might be more directly related to flake initiation and formation and by 2) drawing insights from the fracture mechanics literature.  In particular, we start with the principle that the Hertzian cone, the angle of which is known from fracture mechanics to be a constant for a given raw material, has a measurable impact on flake formation.
 
-When a core is struck, the force of impact begins to produce a Hertzian cone or “cone crack” at the point of percussion (see Figure 1B). The Hertzian cone is the characteristic feature of Hertzian fracture and is produced when a hard indenter is pressed onto the flat surface of a brittle solid [@chen_contact_1995; @frank_theory_1967; @kocer_angle_1998; @lawn_computer_1974; @roesler_brittle_1956]. In three dimensions it forms a truncated cone below the impact surface (see Figure 1B). In archaeology, Hertzian fracture is often referred to as conchoidal fracture.  While the size of the Hertzian cone is dependent on variables such as the indenter’s radius, impact velocity and fracture toughness of the brittle solid, the cone angle remains unchanged [@chen_influence_1989]. The Hertzian cone angle (sometimes referred to as the 'included angle' in fracture mechanics literature) is the apex angle of the Hertzian cone. Though the orientation of the Hertzian cone can be altered by changing the of angle of blow [@akimune_oblique_1990; @chaudhri_dynamic_2015; @chen_influence_1989; @lawn_computer_1974], the apex angle remains constant for a given raw material type [@fischer-cripps_introduction_2007]. A number of fracture mechanics studies have demonstrated that the Hertzian cone angle is approximately 136° for soda lime glass [@kocer_angle_1998; @lawn_computer_1974; @roesler_brittle_1956], the type of glass used by Dibble and colleagues for their experiments. This value is also reported in Cotterell and Kamminga [@cotterell_formation_1987].  The cone crack grows as force is transferred to the core. Once the crack reaches a certain length, the crack’s propagation path will no longer be Hertzian. At this point, instead of propagating along the edges of the initial Hertzian cone, the crack continues almost parallel to the core surface to form a flake [@cotterell_essential_1985; @cotterell_formation_1987]. Although the Hertzian cone is only associated with the initial crack formation, the angle of the cone leaves a marked effect on the ventral surface of the flake near where it has been struck in the form of the bulb of percussion. 
+When a core is struck, the force of impact begins to produce a Hertzian cone or “cone crack” at the point of percussion (see Figure 1B). The Hertzian cone is the characteristic feature of Hertzian fracture and is produced when a hard indenter is pressed onto the flat surface of a brittle solid [@chen_contact_1995; @frank_theory_1967; @kocer_angle_1998; @lawn_computer_1974; @roesler_brittle_1956]. In three dimensions it forms a truncated cone below the impact surface (see Figure 1B). In archaeology, Hertzian fracture is often referred to as conchoidal fracture.  While the size of the Hertzian cone is dependent on variables such as the indenter’s radius, the impact velocity and the fracture toughness of the brittle solid, the cone angle remains unchanged [@chen_influence_1989]. The Hertzian cone angle (sometimes referred to as the 'included angle' in fracture mechanics literature) is the apex angle of the Hertzian cone. Though the orientation of the Hertzian cone can be altered by changing the of angle of blow [@akimune_oblique_1990; @chaudhri_dynamic_2015; @chen_influence_1989; @lawn_computer_1974], the apex angle remains constant for a given raw material type [@fischer-cripps_introduction_2007]. A number of fracture mechanics studies have demonstrated that the Hertzian cone angle is approximately 136° for soda lime glass [@kocer_angle_1998; @lawn_computer_1974; @roesler_brittle_1956], the type of glass used by Dibble and colleagues for their experiments. This value is also reported in Cotterell and Kamminga [@cotterell_formation_1987].  The cone crack grows as force is transferred to the core. Once the crack reaches a certain length, the crack’s propagation path will no longer be Hertzian. At this point, instead of propagating along the edges of the initial Hertzian cone, the crack continues almost parallel to the core surface to form a flake [@cotterell_essential_1985; @cotterell_formation_1987]. Although the Hertzian cone is only associated with the initial crack formation, the angle of the cone leaves a marked effect on the ventral surface of the flake near where it has been struck in the form of the bulb of percussion. 
 
 Our prediction is that the constant Hertzian cone angle means that platform width of a given flake is a function of where the core is struck and where this angle intersects the platform edge.  To show this we present a new measure called platform surface interior angle (PSIA) formed by the point of percussion and the extent of the platform width (Figure 1A). We predict that this angle will be constant given that it directly follows from the constant of the Hertzian cone angle. If our prediction is correct, platform width (PW) can be  incorporated into the EPA-PD model and grounded in fracture mechanics via PSIA.  This model also has behavioral implications in that it may explain how the manipulation of the platform impacts flake morphology.
 
@@ -229,9 +230,9 @@ To test this model, we examine several sets of flakes, including flakes produced
 
 # Materials and Methods
 
-We examine the platform surface interior angle in three different datasets.  First, we examine glass flakes (n = `r nrow(dibble)`) and cores coming from the Dibble controlled experiments in flake formation [@dibble_introducing_2009-1; @leader_effects_2017; @lin_utility_2013-1; @magnani_flake_2014-1; @rezek_relative_2011-1].  This dataset has the advantage that a number of potentially important variables are either controlled for or were measured.  These include the exterior platform angle, the angle of blow, the hammer type, raw material, and metrics such as platform thickness, platform width, flake length, width and thickness, and flake weight.  Hereafter this dataset is referred to as the *Dibble glass data*.  Second, we attempt to replicate the findings from the Dibble glass data by measuring the PSIA in a large (n = `r nrow(campagne)`) set of complete, unretouched flakes coming from 45 discrete reduction sequences produced in replicative experiments by three knappers who were naïve to the goals of this study.  These flakes were made with the intent of replicating various Middle and Upper Paleolithic core reduction strategies from the initial decortification of the core through to flake production and core maintenance [@brenet_elaboration_2009; @brenet_elaboracion_2011; @bourguignon_aproximacion_2011; @ortega_cordellat_produccion_2013].  These replicative experiments used nodules of high-quality Bergerac and Sénonien flint weighing from ~480–4100 g and coming from the southwest region of France [@jaubert_mousterien_2008].  For each of the flakes coming from these reduction series, the technology and the type of hammer (hard hammer, soft hammer and indirect percussion) are known.  Here we are interested in the hard hammer flakes because these are comparable to the Dibble hard hammer flakes, but we have included the soft hammer and indirect percussion flakes in the results presentation for discussion purposes.  Today these flakes are stored in Campagne, France, and hereafter this dataset is referred to as the *Campagne data* (see @archer_quantifying_nodate for additional details on the structure of this dataset).  Third, in addition, we measured a small set of flakes (n = `r nrow(MPI_flakes)`) produced at the Max Planck Institute for Evolutionary Anthropology in Leipzig, Germany, in the context of teaching, replication, and experimentation.  In this case, no details are known about how the flakes were produced (e.g. hammer types).  This set of flakes is used here only to test a method for measuring the PSIA.  Hereafter this dataset is referred to as the *MPI data*.
+We examine the platform surface interior angle in three different datasets.  First, we examine glass flakes (n = `r nrow(dibble)`) and cores coming from the Dibble controlled experiments in flake formation [@dibble_introducing_2009-1; @leader_effects_2017; @lin_utility_2013-1; @magnani_flake_2014-1; @rezek_relative_2011-1].  This dataset has the advantage that a number of potentially important variables are either controlled for or were measured.  These include the exterior platform angle, the angle of blow, the hammer type, raw material, and metrics such as platform thickness, platform width, flake length, width and thickness, and flake weight.  Hereafter this dataset is referred to as the *Dibble glass data*.  Second, we attempt to replicate the findings from the Dibble glass data by measuring the PSIA in a large (n = `r nrow(campagne)`) set of complete, unretouched flakes coming from 45 discrete reduction sequences produced in replicative experiments by three knappers who were naïve to the goals of this study.  These flakes were made with the intent of replicating various Middle and Upper Paleolithic core reduction strategies from the initial decortification of the core through to flake production and core maintenance [@brenet_elaboration_2009; @brenet_elaboracion_2011; @bourguignon_aproximacion_2011; @ortega_cordellat_produccion_2013].  These replicative experiments used nodules of high-quality Bergerac and Sénonien flint weighing from ~480–4100 g and coming from the southwest region of France [@jaubert_mousterien_2008].  For each of the flakes coming from these reduction series, the technology and the type of hammer (hard hammer, soft hammer and indirect percussion) are known.  Here we are interested in the hard hammer flakes because these are comparable to the Dibble hard hammer flakes, but we have included the soft hammer and indirect percussion flakes in the results presentation for discussion purposes.  Today these flakes are stored in Campagne, France, and hereafter this dataset is referred to as the *Campagne data* (see @archer_quantifying_nodate for additional details on the structure of this dataset).  Third, in addition, we measured a small set of flint flakes (n = `r nrow(MPI_flakes)`) produced at the Max Planck Institute for Evolutionary Anthropology in Leipzig, Germany, in the context of teaching, replication, and experimentation.  In this case, no details are known about how the flakes were produced (e.g. hammer types).  This set of flakes is used here only to test a method for measuring the PSIA.  Hereafter this dataset is referred to as the *MPI data*.
 
-The methods used to measure the PSIA varied substantially between the three datasets for practical reasons given the types of data available to us and because we wanted to try different methods to begin to have some idea of how best to measure this angle in future studies.  First, for the Dibble glass data, we used the following procedure.  Dibble and colleagues used several core forms, but the first and most common type is what was called the semispherical core.  This core (reproduced here in Figure 2) looks like a loaf of bread with flat, squared off sides and back, and a curved or domed flaking surface.  An unworked example of this core type was scanned using an NextEngine 3D laser scanner.  The resulting mesh was then processed in R to rotate the platform to be perpendicular to the Z axis (or coincident with the XY plane).  The XY coordinates of the triangles forming the platform were then extracted from this model and a convex hull fit to this cloud of points to have the full outline of the platform on the Dibble semispherical cores (see Figure 2).  Next, we extracted just the portion of the outline that includes where flakes are struck from these cores, and we fit a polynomial curve to these points.  Using the formula for this curve, we created a series of equally spaced (in X) points along the platform edge (see Figure 2).  We then filtered the Dibble glass data to have only flakes made from the semispherical cores by hard hammer.  We include only flakes with a feather termination, and we exclude flakes coming from experiments on platform beveling [@leader_effects_2017] and so-called 'on-edge' core strikes [@magnani_flake_2014-1].  Knowing that Dibble and colleagues tried to strike flakes from these cores at the center or peak of the core surface curvature, we use the platform depths reported for these flakes to position the point of percussion relative to the set of platform edge outline points described above.  Next, we find the symmetrical pair of platform edge outline points, one to the left and one to the right of the point of percussion, that yield a platform width equal to the reported platform width for each flake.  Finally, the PSIA is calculated (arc-cosine of the dot product of two normalize vectors) as the angle between the two line segments formed by the left platform width point and the point of percussion and the right platform point and the point of percussion.  In the results presented below, this angle is referred to as the *estimated* PSIA to indicate that is is not directly measured from the flakes themselves.
+The methods used to measure the PSIA varied substantially between the three datasets for practical reasons given the types of data available to us and because we wanted to try different methods to begin to have some idea of how best to measure this angle in future studies.  First, for the Dibble glass data, we used the following procedure.  Dibble and colleagues used several core forms, but the first and most common type is what was called the semispherical core.  This core (reproduced here in Figure 2) looks like a loaf of bread with flat, squared off sides and back, and a curved or domed flaking surface.  An unworked example of this core type was scanned using an NextEngine 3D laser scanner.  The resulting mesh was then processed in R to rotate the platform to be perpendicular to the Z axis (or coincident with the XY plane).  The XY coordinates of the triangles forming the platform were then extracted from this model and a convex hull fit to this cloud of points to have the full outline of the platform on the Dibble semispherical cores (see Figure 2).  Next, we extracted just the portion of the outline that includes where flakes are struck from these cores, and we fit a polynomial curve to these points.  Using the formula for this curve, we created a series of equally spaced (in X) points along the platform edge (see Figure 2).  We then filtered the Dibble glass data to have only flakes made from the semispherical cores by hard hammer.  We include only flakes with a feather termination, and we exclude flakes coming from experiments on platform beveling [@leader_effects_2017] and so-called 'on-edge' core strikes [@magnani_flake_2014-1] (thereby arriving arriving at our sample of n = `r nrow(dibble)`).  Knowing that Dibble and colleagues tried to strike flakes from these cores at the center or peak of the core surface curvature, we use the platform depths reported for these flakes to position the point of percussion relative to the set of platform edge outline points described above.  Next, we find the symmetrical pair of platform edge outline points, one to the left and one to the right of the point of percussion, that yield a platform width equal to the reported platform width for each flake.  Finally, the PSIA is calculated (arc-cosine of the dot product of two normalize vectors) as the angle between the two line segments formed by the left platform width point and the point of percussion and the right platform point and the point of percussion.  In the results presented below, this angle is referred to as the *estimated* PSIA to indicate that this angle is not directly measured from the flakes themselves.
 
 ```{r fig2-core_outlines, fig.cap = fig_captions[[2]], fig.height = 2, fig.width = 3.5}
 
@@ -279,7 +280,7 @@ For the Campagne data, we use the following procedure.  All of the flakes were s
 
 Lastly, for the MPI data, we use only the goniometer method described above.  One of us (MW) made the measurements with instructions only on the mechanics of the measurement.  To avoid bias, MW was naïve to the goals and results of this study.  In the course of measuring the flakes, several problematic platforms were identified where the measurement of the PSIA was not as clear as the person selecting the flakes (SPM) had initially believed.  These flakes were removed from the analysis.   
 
-We use the R [@team_r_2010] statistical environment to do this analysis.  This paper is an rMarkdown document, and it is included in the supplementary information along with the data files needed to compile the document and replicate all of the figures, tables, and statistics. 
+We use the R [@r_core_team_r_2018] statistical environment to do this analysis.  This paper is an rMarkdown document, and it is included in the supplementary information along with the data files needed to compile the document and replicate all of the figures, tables, and statistics. 
 
 
 # Results
@@ -379,25 +380,25 @@ p1 = ggplot()
 p1 = p1 + geom_point(plot_data, mapping = aes(pd, psia), size = .55, alpha = .5)
 p1 = p1 + ylab('PSIA (degrees)')
 p1 = p1 + xlab('Platform Depth (mm)')
-p1 = p1 + my_theme
+p1 = p1 + my_theme_smaller_font
 
 p2 = ggplot()
 p2 = p2 + geom_point(plot_data, mapping = aes(pw, psia), size = .65, alpha = .5)
 p2 = p2 + ylab('')
 p2 = p2 + xlab('Platform Width (mm)')
-p2 = p2 + my_theme + theme(axis.text.y=element_blank())
+p2 = p2 + my_theme_smaller_font + theme(axis.text.y=element_blank())
 
 p3 = ggplot()
 p3 = p3 + geom_point(plot_data, mapping = aes(EPA, psia), size = .75, alpha = .5)
 p3 = p3 + ylab('PSIA (degrees)')
 p3 = p3 + xlab('EPA (degrees)')
-p3 = p3 + my_theme
+p3 = p3 + my_theme_smaller_font
 
 p4 = ggplot()
 p4 = p4 + geom_point(plot_data, mapping = aes(mass, psia), size = .85, alpha = .5)
 p4 = p4 + ylab('')
 p4 = p4 + xlab('Weight (gm)')
-p4 = p4 + my_theme + theme(axis.text.y=element_blank())
+p4 = p4 + my_theme_smaller_font + theme(axis.text.y=element_blank())
 
 if (tiff_figures) {
     cat('[place Figure 4 here]')
@@ -507,7 +508,7 @@ if (tiff_figures) graphics.off()
 
 ```
 
-Figures 7 and 8 show comparisons of the results of the estimated PSIA presented above with direct measurements of this angle on a sample of `r nrow(dibble_remeasured)` of the Dibble glass flakes.  For this sample, the PSIA is `r round(mean(dibble_remeasured$psia),2)`±`r round(sd(dibble_remeasured$psia),2)`.  When measured with a digital goniometer the angle is `r round(mean(dibble_remeasured$PSIA_GONIOMETER),2)`±`r round(sd(dibble_remeasured$PSIA_GONIOMETER),2)`, and when measured with digital calipers and calculated using trigonometry the angle is `r round(mean(dibble_remeasured$psia_trig),2)`±`r round(sd(dibble_remeasured$psia_trig),2)`.
+Figures 7 and 8 show comparisons of the results of the estimated PSIA presented above with direct measurements of this angle on a subsample of `r nrow(dibble_remeasured)` of the `r nrow(dibble)` Dibble glass flakes in our analysis.  For this sample, the PSIA is `r round(mean(dibble_remeasured$psia),2)`±`r round(sd(dibble_remeasured$psia),2)`.  When measured with a digital goniometer the angle is `r round(mean(dibble_remeasured$PSIA_GONIOMETER),2)`±`r round(sd(dibble_remeasured$PSIA_GONIOMETER),2)`, and when measured with digital calipers and calculated using trigonometry the angle is `r round(mean(dibble_remeasured$psia_trig),2)`±`r round(sd(dibble_remeasured$psia_trig),2)`.
 
 ```{r fig7_remeasure_comparisons, fig.height = 2, fig.width = 5, fig.cap = fig_captions[[7]]}
 
@@ -519,7 +520,7 @@ p = p + geom_abline(intercept = 0, slope = 1)
 p = p + scale_x_continuous(limits = c(110, 160), breaks = c(110, 130, 150))
 p = p + ylim(110, 160)
 p = p + coord_fixed()
-p = p + my_theme
+p = p + my_theme_smaller_font
 p1 = p
 
 p = ggplot(dibble_remeasured, aes(PSIA_GONIOMETER, psia))
@@ -530,7 +531,7 @@ p = p + geom_abline(intercept = 0, slope = 1)
 p = p + scale_x_continuous(limits = c(110, 160), breaks = c(110, 130, 150))
 p = p + ylim(110, 160)
 p = p + coord_fixed()
-p = p + my_theme
+p = p + my_theme_smaller_font
 p2 = p
 
 p = ggplot(dibble_remeasured, aes(psia_trig, psia))
@@ -541,7 +542,7 @@ p = p + geom_abline(intercept = 0, slope = 1)
 p = p + scale_x_continuous(limits = c(110, 160), breaks = c(110, 130, 150))
 p = p + ylim(110, 160)
 p = p + coord_fixed()
-p = p + my_theme
+p = p + my_theme_smaller_font
 p3 = p
 
 if (tiff_figures) {
@@ -611,31 +612,34 @@ In the Campagne data, PSIA does not covary with platform width, platform depth o
 ```{r fig10-PSIA_to_other_measures, fig.height = 2, fig.width = 5, fig.cap = fig_captions[[10]]}
 
 p = ggplot(campagne, aes(psia, pw, color = Technique))
-p = p + geom_point(show.legend = FALSE, size = .35, alpha = .65)
+p = p + geom_point(show.legend = TRUE, size = .35, alpha = .65)
 p = p + xlab('PSIA')
 p = p + ylab('Platform Width')
 p = p + scale_color_manual(values = c('#4D95BE', '#A1BE56', '#E6682D'))
-p1 = p + my_theme
+p = p + guides(color = guide_legend(override.aes = list(size = 3), title = ''))
+p1 = p + my_theme_smaller_font
 
 p = ggplot(campagne, aes(psia, pd, color = Technique))
-p = p + geom_point(show.legend = FALSE, size = .35, alpha = .65)
+p = p + geom_point(show.legend = TRUE, size = .35, alpha = .65)
 p = p + xlab('PSIA')
 p = p + ylab('Platform Depth')
 p = p + scale_color_manual(values = c('#4D95BE', '#A1BE56', '#E6682D'))
-p2 = p + my_theme
+p = p + guides(color = guide_legend(override.aes = list(size = 3), title = ''))
+p2 = p + my_theme_smaller_font
 
 p = ggplot(campagne, aes(psia, pw/pd, color = Technique))
-p = p + geom_point(show.legend = FALSE, size = .35, alpha = .65)
+p = p + geom_point(show.legend = TRUE, size = .35, alpha = .65)
 p = p + xlab('PSIA')
 p = p + ylab('PW / PD')
 p = p + scale_color_manual(values = c('#4D95BE', '#A1BE56', '#E6682D'))
-p3 = p + my_theme
+p = p + guides(color = guide_legend(override.aes = list(size = 3), title = ''))
+p3 = p + my_theme_smaller_font
 
 if (tiff_figures) {
     cat('[place Figure 10 here]')
     tiff('figure_10.tif', res = 300, width = 5, height = 2, units = 'in') }
 
-grid.arrange(p1, p2, p3, ncol = 3)
+ggarrange(p1, p2, p3, ncol = 3, nrow = 1, common.legend = TRUE, legend = 'bottom')
 
 if (tiff_figures) graphics.off()
 
@@ -748,7 +752,7 @@ We note that our finding that the PSIA varies around a constant derived from fra
 
 Fracture mechanics is a massive field of study with both great potential and great difficulties for understanding flake formation.  The potential is that the physical laws and models coming from fracture mechanics are, ultimately, how the actions of knappers are translated to the removal of usable flakes.  The difficulties are both inherent to the field of fracture mechanics itself and to the complexity of the problem (some solutions require more time and computing power than exists).  There are also difficulties related to the challenges of interdisciplinary work where the equations and goals of one field are terribly difficult to bring into another.  This later point is clearly seen in the early fracture mechanics literature and the minimal impact it has had on experimental and replicative studies of flake formation.
 
-This said, our goal here was to return to this literature and to try to find some useful insights that could be translated to a better understanding of the underlying mechanisms (or first principles) of flake formation and that might thereby lead to a better integration of the various statistical models currently in use.  To do this, we discarded the existing focus in the experimental literature on what knappers do and instead focused on attributes that may be more directly related to fracture mechanics.  Thus we focused our attention on the Hertzian percussion cone as a constant and investigated whether it could help explain platform width, an aspect of flake size and shape that up to now has been absent from the dominant EPA-PD model of flake formation.  We measured three different collections in multiple different ways and found that in each case the angle formed by the platform width and the point of percussion to be, on average, essentially the same as what is predicted from fracture mechanics for the angle of the Hertzian cone. 
+This said, our goal here was to return to this literature and to try to find some useful insights that could be translated to a better understanding of the underlying mechanisms (or first principles) of flake formation and that might thereby lead to a better integration of the various statistical models currently in use.  To do this, we switched from the existing focus in the experimental literature on what knappers do to instead focus on attributes that may be more directly related to fracture mechanics.  Thus we focused our attention on the Hertzian percussion cone as a constant and investigated whether it could help explain platform width, an aspect of flake size and shape that up to now has been absent from the dominant EPA-PD model of flake formation.  We measured three different collections in multiple different ways and found that in each case the angle formed by the platform width and the point of percussion to be, on average, essentially the same as what is predicted from fracture mechanics for the angle of the Hertzian cone. 
 
 We conclude that the platform surface interior angle or PSIA is an important determinant in flake size and shape.  While it would seem that it is a constant and not under direct control by the knapper, the knapper is (unknowingly) exploiting the properties of this angle when preparing the platform and its contact with the core surface and when deciding how far into the core to strike.  In fact, this angle underlies a knapper's ability to visualize the extent of the striking platform prior to removing a flake.  In our model, this is how the PD side of the EPA-PD model of flake formation is translated into a flake of a particular size and shape.  In other words, it is not the PD that directly structures flake size but rather PD is proxy for how far into the core a flake is struck which then, through the effect of platform surface interior angle on platform width, structures the size and shape of the flake.
 
@@ -758,14 +762,21 @@ This, however, requires further testing, particularly with beveled flakes where 
 
 # Acknowledgements
 
-Michel Brenet and Laurence Bourguignon produced the Campagne data set, and we thank them for allowing us access to this important collection.  We thank the Max Planck Society for funding portions of this work.  LL and JR received funding from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation program  (grant agreement n° 714658; STONECULT project).  TD received funding from the European Union’s Framework Programme for Research and Innovation Horizon 2020 (2014-2020) under the Marie Skłodowska-Curie grant agreement No. 751125.  Claudio Tennie provided feedback on the ideas and comments on the manuscript.  SPM, MW, WA, ZR and TD thank Jean-Jacques Hublin for his continued support of our research agenda.  Sadly Harold Dibble died before the main findings of this paper were discovered.  Without his vision and his efforts to build a data set of flakes made under controlled conditions, this paper would not have been possible.  We dedicate this paper to him.
+Michel Brenet and Laurence Bourguignon produced the Campagne data set, and we thank them for allowing us access to this important collection.  Claudio Tennie provided feedback on the ideas and comments on the manuscript.  SPM, MW, WA, ZR and TD thank Jean-Jacques Hublin for his continued support of our research agenda.  Sadly Harold Dibble died before the main findings of this paper were discovered.  Without his vision and his efforts to build a data set of flakes made under controlled conditions, this paper would not have been possible.  We dedicate this paper to him.
+
+
+
+# Permits
+
+No permits were required for the described study, which complied with all relevant regulations.
+
 
 
 # Supplemental Information
 
-S1 - rMarkdown file of this document
+**S1 File.  PSIA_manuscript.rmd.**  rMarkdown file of this document.
 
-S2 - datasets.zip with data files, figures, bibliography and format file.
+**S2 File.  datasets.zip.**  Compressed file containing data files, figures, bibliography and format file.
 
 
 ```{r results = 'asis'}
