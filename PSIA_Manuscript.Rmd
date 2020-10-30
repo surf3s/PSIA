@@ -280,7 +280,7 @@ For the Campagne data, we use the following procedure.  All of the flakes were s
 
 Lastly, for the MPI data, we use only the goniometer method described above.  One of us (MW) made the measurements with instructions only on the mechanics of the measurement.  To avoid bias, MW was naïve to the goals and results of this study.  In the course of measuring the flakes, several problematic platforms were identified where the measurement of the PSIA was not as clear as the person selecting the flakes (SPM) had initially believed.  These flakes were removed from the analysis.   
 
-We use the R [@r_core_team_r_2018] statistical environment to do this analysis.  This paper is an rMarkdown document, and it is included in the supplementary information along with the data files needed to compile the document and replicate all of the figures, tables, and statistics. 
+We use the R [@r_core_team_r_2018] statistical environment to do this analysis.  This paper is an rMarkdown document, and it is included in the supplementary information along with the data files needed to compile the document and replicate all of the figures, tables, and statistics. No permits were required for the described study, which complied with all relevant regulations.
 
 
 # Results
@@ -759,17 +759,9 @@ We conclude that the platform surface interior angle or PSIA is an important det
 This, however, requires further testing, particularly with beveled flakes where PD, without PSIA, performs poorly as a proxy for how far into the core a flake is struck.  If the PSIA performs better in these circumstances, as the preliminary data presented here suggest (see Figure 11), then we will have improved the EPA-PD model and helped to integrate what are now disparate studies [@dibble_introducing_2009-1; @leader_effects_2017].  Additionally, while our study shows that the average PSIA conforms well to predictions from fracture mechanics for Hertzian flake formation, it is still clear that there is variability around this mean.  Given that there is certainly some chaos in flake formation, we are not sure how much variability to expect.  For instance, sometimes the Hertzian cone crack may kink at a light angle to continue expanding, and this kink may contribute to the variability observed in PSIA [@hu_hertzian_1996; @marimuthu_spherical_2016].  However, it is also clear that the model does not work at all for some flakes.  It may be the case that these flakes are not formed by Hertzian mechanisms (e.g. bending flakes) and that alternative models will be required in these cases. Clearly more experiments and more data are required to begin to understand which kinds of flakes fail the PSIA model presented here, and these flakes will require additional insights into models of flake formation.
 
 
-
 # Acknowledgements
 
 Michel Brenet and Laurence Bourguignon produced the Campagne data set, and we thank them for allowing us access to this important collection.  Claudio Tennie provided feedback on the ideas and comments on the manuscript.  SPM, MW, WA, ZR and TD thank Jean-Jacques Hublin for his continued support of our research agenda.  Sadly Harold Dibble died before the main findings of this paper were discovered.  Without his vision and his efforts to build a data set of flakes made under controlled conditions, this paper would not have been possible.  We dedicate this paper to him.
-
-
-
-# Permits
-
-No permits were required for the described study, which complied with all relevant regulations.
-
 
 
 # Supplemental Information
