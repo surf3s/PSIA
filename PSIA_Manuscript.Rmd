@@ -71,6 +71,7 @@ address:
 output:
   pdf_document: rticles::plos_article
   word_document: default
+#output: github_document
 csl: plos.csl
 header-includes:
 - \usepackage{lineno}
@@ -95,12 +96,12 @@ rmarkdown::render('PSIA_Manuscript.rmd')
 
 -->
 
-```{r setup_markdown, include=FALSE}
+```{r setup_markdown, include=FALSE, echo=FALSE}
 
 knitr::opts_chunk$set(tidy = FALSE, echo = FALSE, warning = FALSE, message = FALSE, comment = NA, cache = FALSE)
 
 # To have the figures embedded in this document, set this to FALSE
-tiff_figures = TRUE
+tiff_figures = FALSE
 
 ```
 
