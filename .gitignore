@@ -57,3 +57,7 @@ Make_Datasets.R
 *.Rproj
 Correspondance/*.*
 Other/*.*
+Previous Versions/*.*
+pw_pd_psia.Rmd
+make_camp*.*
+
