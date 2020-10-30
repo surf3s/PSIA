@@ -119,7 +119,7 @@ model.
 
 <div class="figure">
 
-<img src="Figure_01.png" alt="Illustration of several flake attributes discussed here.  On the left is a schematic semispherical core used in the Dibble and colleagues glass experiments.  On right is a schematic profile of the core through the point of percussion." width="350px" />
+<img src="PSIA_Manuscript_files/figure-gfm/figure_01.png" alt="Illustration of several flake attributes discussed here.  On the left is a schematic semispherical core used in the Dibble and colleagues glass experiments.  On right is a schematic profile of the core through the point of percussion." width="350px" />
 
 <p class="caption">
 
